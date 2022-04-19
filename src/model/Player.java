@@ -6,14 +6,40 @@ public class Player {
 	
 	//Attributes
 	@SuppressWarnings("unused")
-	private CharacterType character;
-	@SuppressWarnings("unused")
 	private String playerName;
 	@SuppressWarnings("unused")
-	private int Score;
+	private int score;
+	@SuppressWarnings("unused")
+	private CharacterType character;
 	
 	
-	public Player() {
+	public Player(String playerName, int idCharacterType) {
 		
+		this.playerName = playerName;
+		
+		//To assign a character type enum
+		if(idCharacterType == 0) {
+			character = CharacterType.RICK;
+		}
+		else if(idCharacterType == 1) {
+			character = CharacterType.MORTY;
+		}
+		
+		score = 0;
 	}
+	
+	public String toString() {
+		String out = "";
+		
+		if(character == CharacterType.RICK) {
+			out = "R";
+		}
+		else if(character == CharacterType.MORTY) {
+			out = "M";
+		}
+		
+		return out;
+	}
+	
+	
 }

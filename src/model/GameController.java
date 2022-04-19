@@ -28,6 +28,62 @@ public class GameController {
 			list.add(i);
 		}
 		
+		//To locate the players in a random position
+		locateThePlayersInTheBoard(playerR1,playerM2);
+		
+		locateTheLinksInTheBoard(numLinks);
+	}
+	
+	public void locateTheLinksInTheBoard(int numLinks) {
+		@SuppressWarnings("unused")
+		String [] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
+				"P","Q","R","S","T","U","V","W","X","Y","Z"};
+		
+		int [] randomNumbers = new int[numLinks*2];
+		
+		//To assign the random values to the array for the linked pairs
+		
+		randomNumbers[0] = (int)((Math.random()*numBlocks)+1);
+		
+		
+		//To create n random numbers and save them in the array
+		for(int i = 1;i<randomNumbers.length;i++) {
+			randomNumbers[i] = (int)((Math.random()*numBlocks)+1);
+			
+			for(int j = 0;j<i;j++) {
+				if(randomNumbers[i] == randomNumbers[j]) {
+					i--;
+				}
+			}
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	public void locateThePlayersInTheBoard(String playerR1, String playerM2) {
+		
+		
+		//To generate a random numbers to locate the players
+		int posRick = (int)((Math.random()*numBlocks)+1);
+		Player rick = new Player(playerR1,0);
+		list.toLookAnBlockAndLocatePlayer(posRick,rick);
+		
+		int posMorty = (int)((Math.random()*numBlocks)+1);
+		Player morty = new Player(playerM2,1);
+		
+		//If the positions are equal then
+		while(posMorty == posRick ) {
+			posMorty = (int)((Math.random()*numBlocks)+1);
+		}
+		
+		
+		
+		list.toLookAnBlockAndLocatePlayer(posMorty,morty);
+		
 	}
 	
 	public String toShowGameBoard() {

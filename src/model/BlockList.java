@@ -24,6 +24,18 @@ public class BlockList {
 			temp.setPrevious(last);
 			last.setNext(temp);
 			last = temp;
+			last.setNext(first);
+			first.setPrevious(last);
+		}
+	}
+	
+	public boolean toLookAnBlockAndLocatePlayer(int id, Player player) {
+		
+		if(first == null) {
+			return false;
+		}
+		else {
+			return first.locateAPlayer(id,player);
 		}
 	}
 	
@@ -32,7 +44,7 @@ public class BlockList {
 			return "[]";
 		}
 		else {
-			return "["+first.toString(numColumns,1)+"]";
+			return "["+first.toString(first,numColumns,1,1)+"]";
 		}
 		
 	}
