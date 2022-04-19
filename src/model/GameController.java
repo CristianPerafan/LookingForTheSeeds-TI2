@@ -57,20 +57,6 @@ public class GameController {
 			}
 		}
 		
-		for (int i = 0; i < randomNumbers.length; i++) {
-			System.out.println(randomNumbers[i]);
-		}
-		
-		
-		for(int j = 0;j<randomNumbers.length;j = j+2) {
-			int link1 = randomNumbers[j];
-			int link2 = randomNumbers[j+1];
-			System.out.println("link1: "+link1);
-			System.out.println("link2: "+link2);
-		}
-		
-		
-		
 		int idABC = 0;
 		for(int j = 0;j<randomNumbers.length;j = j+2) {
 			String linkId = alphabet[idABC];
@@ -82,11 +68,6 @@ public class GameController {
 			idABC++;
 			  
 		}
-			
-	
-		
-		
-		
 	}
 	
 	
