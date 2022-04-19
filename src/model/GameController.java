@@ -72,7 +72,7 @@ public class GameController {
 		
 		
 		int idABC = 0;
-		for(int j = 0;j<randomNumbers[j];j = j+2) {
+		for(int j = 0;j<randomNumbers.length;j = j+2) {
 			String linkId = alphabet[idABC];
 			int id1 = randomNumbers[j];
 			list.toLookForAnBlockAndLocateLink(id1,linkId);
