@@ -32,7 +32,7 @@ public class Main {
 		
 		System.out.println("Enter the number of seeds: ");
 		//seeds = sc.nextInt();
-		seeds = 5;
+		seeds = 6;
 		
 		System.out.println("Enter the number of game links: ");
 		boolean stop = false;

@@ -4,11 +4,7 @@ public class BlockInformation {
 		//Attributes 
 	    private int id;
 		private Player player;
-		@SuppressWarnings("unused")
 		private String linkId;
-	
-
-		@SuppressWarnings("unused")
 		private boolean seed;
 		
 		public BlockInformation(int id) {
@@ -38,4 +34,14 @@ public class BlockInformation {
 		public void setLinkId(String linkId) {
 			this.linkId = linkId;
 		}
+
+		public boolean getSeed() {
+			return seed;
+		}
+
+		public void setSeed(boolean seed) {
+			this.seed = seed;
+		}
+		
+		
 }

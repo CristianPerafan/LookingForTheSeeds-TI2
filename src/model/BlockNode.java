@@ -10,6 +10,19 @@ public class BlockNode {
 		blockInfo = new BlockInformation(id);
 	}
 	
+	public boolean locateSeed(int searchedId, boolean seed) {
+		if(blockInfo.getId() == searchedId) {
+			blockInfo.setSeed(seed);
+			return true;
+		}
+		else if(next == null) {
+			return false;
+		}
+		else {
+			return next.locateSeed(searchedId,seed);
+		}
+	}
+	
 	public boolean locateLinkId(int searchedId,String linkId) {
 		if(blockInfo.getId() == searchedId) {
 			blockInfo.setLinkId(linkId);
@@ -75,11 +88,11 @@ public class BlockNode {
 			n++;
 		}
 		
-		if(blockInfo.getLinkId() != null){
-			out = blockInfo.getLinkId();
-		}
-		else if(blockInfo.getPlayer() != null) {
+		if(blockInfo.getPlayer() != null) {
 			out = blockInfo.getPlayer().toString();
+		}
+		else if(blockInfo.getSeed() == true) {
+			out = "*";
 		}
 		else {
 			out = blockInfo.getId()+"";

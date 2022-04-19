@@ -29,6 +29,15 @@ public class BlockList {
 		}
 	}
 	
+	public boolean toLookForABlockAndLocateSeed(int id, boolean seed) {
+		if(first == null) {
+			return false;
+		}
+		else {
+			return first.locateSeed(id,seed);
+		}
+	}
+	
 	
 	public boolean toLookForABlockAndLocatePlayer(int id, Player player) {
 		

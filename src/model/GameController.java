@@ -29,10 +29,34 @@ public class GameController {
 			list.add(i);
 		}
 		
+		locateSeedInTheBoard(numSeeds);
 		//To locate the players in a random position
 		locateThePlayersInTheBoard(playerR1,playerM2);
 		
 		locateTheLinksInTheBoard(numLinks);
+	}
+	
+	public void locateSeedInTheBoard(int numSeeds) {
+		
+		int[] randomNumbers = new int[numSeeds];
+		
+		randomNumbers[0] = (int)((Math.random()*numBlocks)+1);
+		
+		for(int i = 1;i<randomNumbers.length;i++) {
+			randomNumbers[i] = (int)((Math.random()*numBlocks)+1);
+			
+			for(int j = 0;j<i;j++) {
+				if(randomNumbers[i] == randomNumbers[j]) {
+					i--;
+				}
+			}
+		}
+		
+		for (int i = 0; i < randomNumbers.length; i++) {
+			list.toLookForABlockAndLocateSeed(randomNumbers[i], true);
+		}
+		
+		
 	}
 	
 	public void locateTheLinksInTheBoard(int numLinks) {
