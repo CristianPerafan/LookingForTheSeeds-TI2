@@ -23,6 +23,7 @@ public class GameController {
 		
 		this.numSeeds = numSeeds;
 		this.numLinks = numLinks;
+	
 		
 		for(int i = 1;i<=numBlocks;i++) {
 			list.add(i);
@@ -35,7 +36,6 @@ public class GameController {
 	}
 	
 	public void locateTheLinksInTheBoard(int numLinks) {
-		@SuppressWarnings("unused")
 		String [] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
 				"P","Q","R","S","T","U","V","W","X","Y","Z"};
 		
@@ -57,6 +57,33 @@ public class GameController {
 			}
 		}
 		
+		for (int i = 0; i < randomNumbers.length; i++) {
+			System.out.println(randomNumbers[i]);
+		}
+		
+		
+		for(int j = 0;j<randomNumbers.length;j = j+2) {
+			int link1 = randomNumbers[j];
+			int link2 = randomNumbers[j+1];
+			System.out.println("link1: "+link1);
+			System.out.println("link2: "+link2);
+		}
+		
+		
+		
+		int idABC = 0;
+		for(int j = 0;j<randomNumbers[j];j = j+2) {
+			String linkId = alphabet[idABC];
+			int id1 = randomNumbers[j];
+			list.toLookForAnBlockAndLocateLink(id1,linkId);
+			int id2 = randomNumbers[j+1];
+			list.toLookForAnBlockAndLocateLink(id2,linkId);
+			
+			idABC++;
+			  
+		}
+			
+	
 		
 		
 		
@@ -70,7 +97,7 @@ public class GameController {
 		//To generate a random numbers to locate the players
 		int posRick = (int)((Math.random()*numBlocks)+1);
 		Player rick = new Player(playerR1,0);
-		list.toLookAnBlockAndLocatePlayer(posRick,rick);
+		list.toLookForABlockAndLocatePlayer(posRick,rick);
 		
 		int posMorty = (int)((Math.random()*numBlocks)+1);
 		Player morty = new Player(playerM2,1);
@@ -82,7 +109,7 @@ public class GameController {
 		
 		
 		
-		list.toLookAnBlockAndLocatePlayer(posMorty,morty);
+		list.toLookForABlockAndLocatePlayer(posMorty,morty);
 		
 	}
 	

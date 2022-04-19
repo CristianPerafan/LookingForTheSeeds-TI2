@@ -29,7 +29,8 @@ public class BlockList {
 		}
 	}
 	
-	public boolean toLookAnBlockAndLocatePlayer(int id, Player player) {
+	
+	public boolean toLookForABlockAndLocatePlayer(int id, Player player) {
 		
 		if(first == null) {
 			return false;
@@ -38,6 +39,16 @@ public class BlockList {
 			return first.locateAPlayer(id,player);
 		}
 	}
+	
+	public boolean toLookForAnBlockAndLocateLink(int id1,String linkId) {
+		if(first == null) {
+			return false;
+		}
+		else {
+			return first.locateLinkId(id1,linkId);
+		}
+	}
+	
 	
 	public String toShowList(int numColumns) {
 		if(first == null) {

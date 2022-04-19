@@ -3,17 +3,26 @@ package model;
 public class BlockNode {
 	
 	
-	@SuppressWarnings("unused")
 	private BlockNode next,previous;
-	@SuppressWarnings("unused")
 	private BlockInformation blockInfo;
 	
 	public BlockNode(int id) {
 		blockInfo = new BlockInformation(id);
 	}
 	
-	public boolean locateLinkId(int searchedId, String LinkId) {
-		return false;
+	public boolean locateLinkId(int searchedId,String linkId) {
+		if(blockInfo.getId() == searchedId) {
+			blockInfo.setLinkId(linkId);
+			return true;
+		}
+		else if (next == null) {
+			return false;
+		}
+		else {
+			return next.locateLinkId(searchedId, linkId);
+		}
+	
+		
 	}
 	
 	public boolean locateAPlayer(int searchedId,Player player) {
@@ -66,8 +75,10 @@ public class BlockNode {
 			n++;
 		}
 		
-		
-		if(blockInfo.getPlayer() != null) {
+		if(blockInfo.getLinkId() != null){
+			out = blockInfo.getLinkId();
+		}
+		else if(blockInfo.getPlayer() != null) {
 			out = blockInfo.getPlayer().toString();
 		}
 		else {

@@ -6,6 +6,8 @@ public class BlockInformation {
 		private Player player;
 		@SuppressWarnings("unused")
 		private String linkId;
+	
+
 		@SuppressWarnings("unused")
 		private boolean seed;
 		
@@ -29,4 +31,11 @@ public class BlockInformation {
 			this.player = player;
 		}
 		
+		public String getLinkId() {
+			return linkId;
+		}
+		
+		public void setLinkId(String linkId) {
+			this.linkId = linkId;
+		}
 }

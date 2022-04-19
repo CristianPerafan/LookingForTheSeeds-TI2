@@ -40,7 +40,7 @@ public class Main {
 		while(stop == false) {
 			
 			//numLinks = sc.nextInt();
-			numLinks = 5;
+			numLinks = 7;
 			
 			double aux = 0.5*(columns*rows);
 			if(numLinks<aux) {
