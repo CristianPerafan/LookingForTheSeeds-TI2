@@ -123,4 +123,12 @@ public class GameController {
 		out = list.toShowList(numColumns);
 		return out;
 	}
+	
+	public void modifyNumSeeds() {
+		numSeeds--; 
+	}
+	
+	public boolean verifyNumSeeds() {
+		return(numSeeds>0)?true:false;
+	}
 }
