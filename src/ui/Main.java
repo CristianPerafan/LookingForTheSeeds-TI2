@@ -76,8 +76,9 @@ public class Main {
 		
 		pc.toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
-		pc.toShowGameBoard();
+		//pc.toShowGameBoard();
 		
+		pc.toStartGame();
 		//Acá deberian ir los métodos de menu y jugabilidad.
 		
 	}
@@ -96,11 +97,16 @@ public class Main {
 	public void toStartGame() {
 		boolean stopGame = false;
 	
+	
 		while(stopGame == false) {
 			//Rick plays
+			int optionR = menuGameOptions("Rick");
+			executeGameOptions(optionR,0);
 			
 			if(gController.verifyNumSeeds()) {
 				//MortyPlays
+				int optionM = menuGameOptions("Morty");
+				executeGameOptions(optionM,1);
 				if(!gController.verifyNumSeeds()) {
 					stopGame = true;
 					
@@ -117,9 +123,9 @@ public class Main {
 	}
 
 
-	public int menu() {
+	public int menuGameOptions(String player) {
 		int option=0;
-		System.out.println("What do you want to do?\n"+
+		System.out.println("What do you want to do "+player+"?"+"\n"+
 							"(1) Rool dice\n"+
 							"(2) See board\n"+
 							"(3) See links\n"+
@@ -130,10 +136,10 @@ public class Main {
 		return option; 
 	}
 	
-	public void menuOption(int option) {
+	public void executeGameOptions(int option, int numPlayer) {
 		switch(option) {
 		case 1: 
-			System.out.println("Hola 1");
+			roolDice(numPlayer);
 			break;
 		case 2:
 			System.out.println("Hola 2");
@@ -144,8 +150,22 @@ public class Main {
 		case 4: 
 			System.out.println("Hola 4");
 			break; 
+		default:
+			System.out.println("No valid option!!!");
+			break;
 		}
 	}
+	
+	public void roolDice(int numPlayer) {
+		int resultDice = generateRooolDiceResult();
+		System.out.println("The result of rolling the die is "+resultDice);
+	}
+	
+	public int generateRooolDiceResult() {
+		return (int)((Math.random()*6)+1);
+	}
+	
+	
 	
 	
 }

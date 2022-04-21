@@ -9,7 +9,6 @@ public class Player {
 	private String playerName;
 	@SuppressWarnings("unused")
 	private int score;
-	@SuppressWarnings("unused")
 	private CharacterType character;
 	
 	

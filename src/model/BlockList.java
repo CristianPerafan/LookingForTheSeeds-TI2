@@ -64,7 +64,7 @@ public class BlockList {
 			return "[]";
 		}
 		else {
-			return "["+first.toString(first,numColumns,1,1)+"]";
+			return "["+first.pruebaString(first,numColumns,1,1)+"]";
 		}
 		
 	}

@@ -94,6 +94,14 @@ public class GameController {
 		}
 	}
 	
+	public void moveAPlayerInTheBoard(int numPlayer) {
+		if(numPlayer == 0 ) {
+			//To move a Rick in the board game
+		}
+		else {
+			//To move a Morty in the board game
+		}
+	}
 	
 	
 	public void locateThePlayersInTheBoard(String playerR1, String playerM2) {
