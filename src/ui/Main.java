@@ -82,5 +82,21 @@ public class Main {
 	public void toShowGameBoard() {
 		System.out.println(gController.toShowGameBoard());
 	}
+	
+	public void toStartGame() {
+		@SuppressWarnings("unused")
+		boolean rickPlays = true;
+		@SuppressWarnings("unused")
+		boolean mortyPlays = false;
+		boolean stopGame = false;
+	
+		while(stopGame == false) {
+			
+			rickPlays = false;
+			stopGame = false;
+		}
+		
+		System.out.println();
+	}
 
 }
