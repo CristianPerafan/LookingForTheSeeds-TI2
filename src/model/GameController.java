@@ -94,9 +94,9 @@ public class GameController {
 		}
 	}
 	
-	public void moveAPlayerInTheBoard(int numPlayer) {
+	public void moveAlongAPlayerInTheBoard(int numPlayer, int resultDice) {
 		if(numPlayer == 0 ) {
-			//To move a Rick in the board game
+			list.toLookForRickInTheBoard(resultDice);
 		}
 		else {
 			//To move a Morty in the board game

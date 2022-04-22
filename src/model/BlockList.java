@@ -29,6 +29,15 @@ public class BlockList {
 		}
 	}
 	
+	public void toLookForRickInTheBoard(int resultDice) {
+		if(first == null) {
+			return;
+		}
+		else {
+			first.lookForRick(resultDice);
+		}
+	}
+	
 	public boolean toLookForABlockAndLocateSeed(int id, boolean seed) {
 		if(first == null) {
 			return false;

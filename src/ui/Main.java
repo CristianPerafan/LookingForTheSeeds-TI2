@@ -76,7 +76,7 @@ public class Main {
 		
 		pc.toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
-		//pc.toShowGameBoard();
+		pc.toShowGameBoard();
 		
 		pc.toStartGame();
 		//Acá deberian ir los métodos de menu y jugabilidad.
@@ -158,14 +158,37 @@ public class Main {
 	
 	public void roolDice(int numPlayer) {
 		int resultDice = generateRooolDiceResult();
+		System.out.println("");
 		System.out.println("The result of rolling the die is "+resultDice);
+		System.out.println("");
+		System.out.println("What do you want to do?\n"+
+				"(1) Move back\n"+
+				"(2) Move along");
+		int answer = sc.nextInt();
+		while(answer != 1 && answer != 2){
+			System.out.println("No valid option!!!");
+			answer = sc.nextInt();
+		}
+		sc.nextLine();
+		
+		movePlayer(numPlayer,answer,resultDice);
+		
+		
 	}
 	
 	public int generateRooolDiceResult() {
 		return (int)((Math.random()*6)+1);
 	}
 	
-	
-	
+	public void movePlayer(int numPlayer,int answer, int resultDice) {
+		if(answer == 1) {
+			 gController.moveAlongAPlayerInTheBoard(numPlayer,resultDice);
+			 toShowGameBoard();
+		}
+		else {
+			
+		}
+	}
+
 	
 }

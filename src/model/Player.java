@@ -27,6 +27,19 @@ public class Player {
 		score = 0;
 	}
 	
+	//
+	// === GETTERS AND SETTERS
+	//
+	
+	public CharacterType getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(CharacterType character) {
+		this.character = character;
+	}
+	
+	
 	public String toString() {
 		String out = "";
 		
@@ -39,6 +52,8 @@ public class Player {
 		
 		return out;
 	}
+
+	
 	
 	
 }
