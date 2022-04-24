@@ -94,6 +94,14 @@ public class GameController {
 		}
 	}
 	
+	public void moveAlongAPlayerInTheBoard(int numPlayer, int resultDice) {
+		if(numPlayer == 0 ) {
+			list.toLookForRickInTheBoard(resultDice);
+		}
+		else {
+			//To move a Morty in the board game
+		}
+	}
 	
 	
 	public void locateThePlayersInTheBoard(String playerR1, String playerM2) {

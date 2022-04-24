@@ -4,6 +4,8 @@ public class BlockInformation {
 		//Attributes 
 	    private int id;
 		private Player player;
+		@SuppressWarnings("unused")
+		private Player secondPlayer;
 		private String linkId;
 		private boolean seed;
 		
@@ -27,6 +29,15 @@ public class BlockInformation {
 			this.player = player;
 		}
 		
+		
+		public Player getSecondPlayer() {
+			return secondPlayer;
+		}
+
+		public void setSecondPlayer(Player secondPlayer) {
+			this.secondPlayer = secondPlayer;
+		}
+
 		public String getLinkId() {
 			return linkId;
 		}

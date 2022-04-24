@@ -29,6 +29,15 @@ public class BlockList {
 		}
 	}
 	
+	public void toLookForRickInTheBoard(int resultDice) {
+		if(first == null) {
+			return;
+		}
+		else {
+			first.lookForRick(resultDice);
+		}
+	}
+	
 	public boolean toLookForABlockAndLocateSeed(int id, boolean seed) {
 		if(first == null) {
 			return false;
@@ -64,7 +73,7 @@ public class BlockList {
 			return "[]";
 		}
 		else {
-			return "["+first.toString(first,numColumns,1,1)+"]";
+			return "["+first.pruebaString(first,numColumns,1,1)+"]";
 		}
 		
 	}

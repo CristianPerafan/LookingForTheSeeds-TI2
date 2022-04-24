@@ -1,5 +1,7 @@
 package model;
 
+import enums.CharacterType;
+
 public class BlockNode {
 	
 	
@@ -9,6 +11,51 @@ public class BlockNode {
 	public BlockNode(int id) {
 		blockInfo = new BlockInformation(id);
 	}
+	
+	public void lookForRick(int resultDice) {
+		
+		if(blockInfo.getPlayer() != null) {
+			if(blockInfo.getPlayer().getCharacter() == CharacterType.RICK) {
+				Player temp = blockInfo.getPlayer();
+				blockInfo.setPlayer(null);
+				modifyPrevious(1,resultDice,temp);
+				return;
+			}
+			
+		}
+		else if(blockInfo.getSecondPlayer() != null) {
+			if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.RICK) {
+				Player temp = blockInfo.getSecondPlayer();
+				blockInfo.setSecondPlayer(null);
+				modifyPrevious(1,resultDice,temp);
+				return;
+			}
+		}
+		else {
+			next.lookForRick(resultDice);
+		}
+	}
+	
+	public void modifyPrevious(int i,int resultDice, Player temp) {
+		if(i == resultDice) {
+			
+			if(blockInfo.getPlayer() == null) {
+				blockInfo.setPlayer(temp);
+				
+			}
+			else {
+				blockInfo.setSecondPlayer(temp);
+			}
+			
+			return;
+		}
+		else {
+			previous.modifyPrevious(i+1, resultDice,temp);
+		}
+		
+	}
+	
+	
 	
 	public boolean locateSeed(int searchedId, boolean seed) {
 		if(blockInfo.getId() == searchedId) {
@@ -73,7 +120,44 @@ public class BlockNode {
 		this.previous = previous;
 	}
 	
-
+	public String pruebaString(BlockNode first,int numColumns,int i,int counter) {
+		String out = "";
+		
+		if(counter % 2 == 0) {
+			
+			if(next != first) {
+				if(i == numColumns ) {				
+					out += "["+next.pruebaString(first, numColumns, 1,counter+1)+blockInfo.getId();
+					out += "]";
+					out += "\n";
+				}else {
+					out += "] "+"["+next.pruebaString(first, numColumns, i+1, counter)+blockInfo.getId();
+					
+				}
+			}
+		}
+		else {
+			out += "Entra";
+			out = ""+blockInfo.getId();
+			if(next != first) {
+				if(i == numColumns) {
+					out += "]";
+					out += "\n";
+					
+					out += "["+next.toString(first,numColumns,1,counter+1);
+					
+					
+				}
+				else {
+					out += "]  "+"["+next.toString(first,numColumns,i+1,counter);
+	
+				}
+			}
+				
+		}
+		
+		return out;
+	}
 	
 	public String toString(BlockNode first,int numColumns,int i, int counter) {
 		
