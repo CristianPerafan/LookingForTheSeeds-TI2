@@ -9,8 +9,10 @@ public class Main {
 	//Attributes
 	private static Scanner sc;
 	private GameController gController;
+	private boolean passTurn;
 	
 	public Main() {
+		passTurn = false;
 		sc = new Scanner(System.in);
 		gController = new GameController();
 	}
@@ -99,14 +101,27 @@ public class Main {
 	
 	
 		while(stopGame == false) {
-			//Rick plays
-			int optionR = menuGameOptions("Rick");
-			executeGameOptions(optionR,0);
+			
+			
+			
+			while(passTurn == false) {
+				//Rick plays
+				int optionR = menuGameOptions("Rick");
+				executeGameOptions(optionR,0);
+			}
+			
+			passTurn = false;
+			
 			
 			if(gController.verifyNumSeeds()) {
-				//MortyPlays
-				int optionM = menuGameOptions("Morty");
-				executeGameOptions(optionM,1);
+				
+				while(passTurn == false) {
+					//MortyPlays
+					int optionM = menuGameOptions("Morty");
+					executeGameOptions(optionM,1);
+				}
+				passTurn = false;
+				
 				if(!gController.verifyNumSeeds()) {
 					stopGame = true;
 					
@@ -159,12 +174,14 @@ public class Main {
 	
 	public void roolDice(int numPlayer) {
 		int resultDice = generateRooolDiceResult();
+	
 		System.out.println("");
 		System.out.println("The result of rolling the die is: "+resultDice);
 		System.out.println("");
 		System.out.println("What do you want to do?\n"+
 				"(1) Move back\n"+
 				"(2) Move along");
+		
 		int answer = sc.nextInt();
 		while(answer != 1 && answer != 2){
 			System.out.println("No valid option!!!");
@@ -173,6 +190,7 @@ public class Main {
 		sc.nextLine();
 		
 		movePlayer(numPlayer,answer,resultDice);
+		passTurn = true;
 		
 		
 	}
@@ -182,13 +200,38 @@ public class Main {
 	}
 	
 	public void movePlayer(int numPlayer,int answer, int resultDice) {
-		if(answer == 1) {
-			 gController.moveAlongAPlayerInTheBoard(numPlayer,resultDice);
-			 toShowGameBoard();
-		}
-		else {
+		if(numPlayer == 0) {
+			//To move Rick
 			
+			if(answer == 1) {
+				 //When the player wants to move back.
+				gController.movePlayerInTheBoard(numPlayer,1,resultDice);
+			}
+			else {
+				//When the player wants to move along.
+				gController.movePlayerInTheBoard(numPlayer,0,resultDice);
+			}
+			
+		}else {
+			//To move Morty
+			if(answer == 1) {
+				//When the player wants to move back.
+				gController.movePlayerInTheBoard(numPlayer, 1, resultDice);
+			}
+			else {
+				//When the player wants to move along.
+				gController.movePlayerInTheBoard(numPlayer, 0, resultDice);
+			}
 		}
+		
+	}
+	
+	public void toSerialize() {
+		
+	}
+	
+	public void toDeserialize() {
+		
 	}
 
 	

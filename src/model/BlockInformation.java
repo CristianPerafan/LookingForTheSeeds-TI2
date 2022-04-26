@@ -4,7 +4,6 @@ public class BlockInformation {
 		//Attributes 
 	    private int id;
 		private Player player;
-		@SuppressWarnings("unused")
 		private Player secondPlayer;
 		private String linkId;
 		private boolean seed;
@@ -53,6 +52,13 @@ public class BlockInformation {
 		public void setSeed(boolean seed) {
 			this.seed = seed;
 		}
+		
+		@Override
+		public String toString() {
+			return "BlockInformation [id=" + id + ", player=" + player + ", secondPlayer=" + secondPlayer + ", linkId="
+					+ linkId + ", seed=" + seed + "]";
+		}
+		
 		
 		
 }

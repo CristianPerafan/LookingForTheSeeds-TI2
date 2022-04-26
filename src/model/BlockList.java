@@ -29,13 +29,31 @@ public class BlockList {
 		}
 	}
 	
-	public void toLookForRickInTheBoard(int resultDice) {
+	public void toLookForRickInTheBoard(int resultDice, int movement) {
+		
+		// movement == 0 --> Adelantar
+		// movement == 1 --> Retroceder
+		
 		if(first == null) {
+			System.out.println("Entra first null");
 			return;
 		}
 		else {
-			first.lookForRick(resultDice);
+			first.lookForRick(resultDice, movement);
 		}
+	}
+	
+	public void toLookForMortyInTheBoard(int resultDice,int movement)  {
+		// movement == 0 --> Adelantar
+		// movement == 1 --> Retroceder
+				
+		if(first == null) {
+			System.out.println("Entra first null");
+			return;
+			}
+			else {
+				first.lookForMorty(resultDice, movement);
+			}
 	}
 	
 	public boolean toLookForABlockAndLocateSeed(int id, boolean seed) {
