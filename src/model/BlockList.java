@@ -43,6 +43,19 @@ public class BlockList {
 		}
 	}
 	
+	public void toLookForMortyInTheBoard(int resultDice,int movement)  {
+		// movement == 0 --> Adelantar
+		// movement == 1 --> Retroceder
+				
+		if(first == null) {
+			System.out.println("Entra first null");
+			return;
+			}
+			else {
+				first.lookForMorty(resultDice, movement);
+			}
+	}
+	
 	public boolean toLookForABlockAndLocateSeed(int id, boolean seed) {
 		if(first == null) {
 			return false;

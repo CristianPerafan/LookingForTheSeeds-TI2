@@ -158,6 +158,7 @@ public class Main {
 			break;
 		case 2:
 			toShowGameBoard();
+
 			break;
 		case 3:
 			System.out.println("Hola 3");
@@ -175,7 +176,7 @@ public class Main {
 		int resultDice = generateRooolDiceResult();
 	
 		System.out.println("");
-		System.out.println("The result of rolling the die is "+resultDice);
+		System.out.println("The result of rolling the die is: "+resultDice);
 		System.out.println("");
 		System.out.println("What do you want to do?\n"+
 				"(1) Move back\n"+
@@ -215,10 +216,11 @@ public class Main {
 			//To move Morty
 			if(answer == 1) {
 				//When the player wants to move back.
-				
+				gController.movePlayerInTheBoard(numPlayer, 1, resultDice);
 			}
 			else {
-				//When the player wans to move along
+				//When the player wants to move along.
+				gController.movePlayerInTheBoard(numPlayer, 0, resultDice);
 			}
 		}
 		
@@ -232,5 +234,6 @@ public class Main {
 		
 	}
 
+	
 	
 }

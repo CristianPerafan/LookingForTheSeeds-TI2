@@ -104,6 +104,7 @@ public class GameController {
 		}
 		else {
 			//To move to Morty in the board game
+			list.toLookForMortyInTheBoard(resultDice,movement);
 		}
 	}
 	
