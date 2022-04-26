@@ -12,47 +12,78 @@ public class BlockNode {
 		blockInfo = new BlockInformation(id);
 	}
 	
-	public void lookForRick(int resultDice) {
+	public void lookForRick(int resultDice, int movement) {
+		// movement == 0 --> Adelantar
+		// movement == 1 --> Retroceder
 		
 		if(blockInfo.getPlayer() != null) {
 			if(blockInfo.getPlayer().getCharacter() == CharacterType.RICK) {
 				Player temp = blockInfo.getPlayer();
 				blockInfo.setPlayer(null);
-				modifyPrevious(1,resultDice,temp);
+				
+				if(movement == 0) {
+					//Adelantar Rick
+					modifyNext(0,resultDice,temp);
+				}
+				else {
+					//Retroceder Rick
+					System.out.println("RS: "+resultDice);
+					System.out.println("Entra retroceder");
+					modifyPrev(0,resultDice,temp);
+				}
+				
+				
 				return;
+			}
+			else {
+				next.lookForRick(resultDice,movement);
 			}
 			
 		}
 		else if(blockInfo.getSecondPlayer() != null) {
+			
 			if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.RICK) {
 				Player temp = blockInfo.getSecondPlayer();
 				blockInfo.setSecondPlayer(null);
-				modifyPrevious(1,resultDice,temp);
+				modifyNext(1,resultDice,temp);
 				return;
+			}
+			else {
+				next.lookForRick(resultDice,movement);
 			}
 		}
 		else {
-			next.lookForRick(resultDice);
+			next.lookForRick(resultDice, movement);
 		}
 	}
 	
-	public void modifyPrevious(int i,int resultDice, Player temp) {
+	public void modifyNext(int i,int resultDice, Player temp) {
 		if(i == resultDice) {
-			
 			if(blockInfo.getPlayer() == null) {
 				blockInfo.setPlayer(temp);
-				
 			}
 			else {
 				blockInfo.setSecondPlayer(temp);
 			}
-			
-			return;
 		}
 		else {
-			previous.modifyPrevious(i+1, resultDice,temp);
+			next.modifyNext(i = i+1,resultDice,temp);
 		}
 		
+	}
+	
+	public void modifyPrev(int i, int resultDice,Player temp) {
+		if(i == resultDice) {
+			if(blockInfo.getPlayer() == null) {
+				blockInfo.setPlayer(temp);
+			}
+			else {
+				blockInfo.setSecondPlayer(temp);
+			}
+		}
+		else {
+			previous.modifyPrev(i = i+1, resultDice, temp);
+		}
 	}
 	
 	
@@ -174,6 +205,9 @@ public class BlockNode {
 		
 		if(blockInfo.getPlayer() != null) {
 			out = blockInfo.getPlayer().toString();
+		}
+		else if(blockInfo.getSecondPlayer() != null) {
+			out = blockInfo.getSecondPlayer().toString();
 		}
 		else if(blockInfo.getSeed() == true) {
 			out = "*";

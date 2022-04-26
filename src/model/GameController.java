@@ -94,14 +94,21 @@ public class GameController {
 		}
 	}
 	
-	public void moveAlongAPlayerInTheBoard(int numPlayer, int resultDice) {
+	public void movePlayerInTheBoard(int numPlayer,int movement, int resultDice) {
+		
+		// movement == 0 --> Adelantar
+		// movement == 1 --> Retroceder
 		if(numPlayer == 0 ) {
-			list.toLookForRickInTheBoard(resultDice);
+			//To move to Rick in the board game
+			list.toLookForRickInTheBoard(resultDice,movement);
 		}
 		else {
-			//To move a Morty in the board game
+			//To move to Morty in the board game
 		}
 	}
+	
+	
+	
 	
 	
 	public void locateThePlayersInTheBoard(String playerR1, String playerM2) {
