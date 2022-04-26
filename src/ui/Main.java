@@ -142,7 +142,8 @@ public class Main {
 			roolDice(numPlayer);
 			break;
 		case 2:
-			System.out.println("Hola 2");
+			toShowGameBoard();
+
 			break;
 		case 3:
 			System.out.println("Hola 3");
@@ -159,7 +160,7 @@ public class Main {
 	public void roolDice(int numPlayer) {
 		int resultDice = generateRooolDiceResult();
 		System.out.println("");
-		System.out.println("The result of rolling the die is "+resultDice);
+		System.out.println("The result of rolling the die is: "+resultDice);
 		System.out.println("");
 		System.out.println("What do you want to do?\n"+
 				"(1) Move back\n"+
