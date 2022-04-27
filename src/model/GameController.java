@@ -3,9 +3,8 @@ package model;
 public class GameController {
 	//Attributes
 	@SuppressWarnings("unused")
-	private int numColumns,numRows,numBlocks,numSeeds,numLinks;
-	@SuppressWarnings("unused")
-	private String playerR1, playerM2;
+	private int numColumns,numRows,numBlocks,numLinks;
+	
 	private BlockList list;
 	
 	
@@ -21,7 +20,8 @@ public class GameController {
 		
 		numBlocks = numColumns*numRows;
 		
-		this.numSeeds = numSeeds;
+		list.setNumSeeds(numSeeds);
+		
 		this.numLinks = numLinks;
 	
 		
@@ -101,10 +101,12 @@ public class GameController {
 		if(numPlayer == 0 ) {
 			//To move to Rick in the board game
 			list.toLookForRickInTheBoard(resultDice,movement);
+			list.toUpdateNumSeeds();
 		}
 		else {
 			//To move to Morty in the board game
 			list.toLookForMortyInTheBoard(resultDice,movement);
+			list.toUpdateNumSeeds();
 		}
 	}
 	
@@ -140,11 +142,16 @@ public class GameController {
 		return out;
 	}
 	
-	public void modifyNumSeeds() {
-		numSeeds--; 
+	public String toShowGameBoardWithLinks() {
+		String out  = "";
+		out = list.toShowListWithLinks(numColumns);
+		return out;
 	}
 	
+	
 	public boolean verifyNumSeeds() {
-		return(numSeeds>0)?true:false;
+		int ns = list.getNumSeeds();
+		
+		return (ns>0)?true:false;
 	}
 }

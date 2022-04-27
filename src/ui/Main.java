@@ -24,13 +24,16 @@ public class Main {
 		int columns,rows,seeds;
 		int numLinks = 0;
 		
-		System.out.println("**************************************************************");
-		System.out.println("*                                                            *");
-		System.out.println("*             Welcome to Looking for the seeds               *");
-		System.out.println("*                                                            *");
-		System.out.println("**************************************************************");
-		
 
+		System.out.println("  ___   _        _                        _ \r\n"
+				+ " | _ \\ (_)  __  | |__    __ _   _ _    __| |\r\n"
+				+ " |   / | | / _| | / /   / _` | | ' \\  / _` |\r\n"
+				+ " |_|_\\ |_| \\__| |_\\_\\   \\__,_| |_||_| \\__,_|");
+		System.out.println("  __  __               _          \r\n"
+				+ " |  \\/  |  ___   _ _  | |_   _  _ \r\n"
+				+ " | |\\/| | / _ \\ | '_| |  _| | || |\r\n"
+				+ " |_|  |_| \\___/ |_|    \\__|  \\_, |\r\n"
+				+ "                             |__/ ");
 		
 		System.out.println("Enter the number of columns: ");
 		//columns = sc.nextInt();
@@ -92,9 +95,6 @@ public class Main {
 		
 	}
 	
-	public void toShowGameBoard() {
-		System.out.println(gController.toShowGameBoard());
-	}
 
 	public void toStartGame() {
 		boolean stopGame = false;
@@ -158,10 +158,9 @@ public class Main {
 			break;
 		case 2:
 			toShowGameBoard();
-
 			break;
 		case 3:
-			System.out.println("Hola 3");
+			toShowGameBoardWithLinks();
 			break;
 		case 4: 
 			System.out.println("Hola 4");
@@ -224,6 +223,18 @@ public class Main {
 			}
 		}
 		
+	}
+	
+	public void toShowGameBoard() {
+		System.out.println(gController.toShowGameBoard());
+	}
+	
+	public void toShowGameBoardWithLinks() {
+		System.out.println(gController.toShowGameBoardWithLinks());
+	}
+	
+	public void toShowScores() {
+		System.out.println();
 	}
 	
 	public void toSerialize() {

@@ -27,8 +27,6 @@ public class BlockNode {
 				}
 				else {
 					//Retroceder Rick
-					System.out.println("RS: "+resultDice);
-					System.out.println("Entra retroceder");
 					modifyPrev(0,resultDice,temp);
 				}
 				
@@ -72,8 +70,6 @@ public class BlockNode {
 						}
 						else {
 							//Retroceder Rick
-							System.out.println("RS: "+resultDice);
-							System.out.println("Entra retroceder");
 							modifyPrev(0,resultDice,temp);
 						}
 						
@@ -102,8 +98,17 @@ public class BlockNode {
 				}
 	}
 	
+
+	
 	public void modifyNext(int i,int resultDice, Player temp) {
 		if(i == resultDice) {
+			
+			if(blockInfo.getSeed() == true) {
+				temp.increaseSeeds();
+				blockInfo.setSeed(false);
+			}
+			
+			
 			if(blockInfo.getPlayer() == null) {
 				blockInfo.setPlayer(temp);
 			}
@@ -119,6 +124,12 @@ public class BlockNode {
 	
 	public void modifyPrev(int i, int resultDice,Player temp) {
 		if(i == resultDice) {
+			
+			if(blockInfo.getSeed() == true) {
+				temp.increaseSeeds();
+				blockInfo.setSeed(false);
+			}
+			
 			if(blockInfo.getPlayer() == null) {
 				blockInfo.setPlayer(temp);
 			}
@@ -196,58 +207,51 @@ public class BlockNode {
 		this.previous = previous;
 	}
 	
-	public String pruebaString(BlockNode first,int numColumns,int i,int counter) {
-		String out = "";
+	public int upDateNumSeeds(BlockNode first) {
 		
-		if(counter % 2 == 0) {
-			
-			if(next != first) {
-				if(i == numColumns ) {				
-					out += "["+next.pruebaString(first, numColumns, 1,counter+1)+blockInfo.getId();
-					out += "]";
-					out += "\n";
-				}else {
-					out += "] "+"["+next.pruebaString(first, numColumns, i+1, counter)+blockInfo.getId();
-					
-				}
-			}
+		int out=0;
+		
+		if(blockInfo.getSeed() == true) {
+			out++;
 		}
-		else {
-			out += "Entra";
-			out = ""+blockInfo.getId();
-			if(next != first) {
-				if(i == numColumns) {
-					out += "]";
-					out += "\n";
-					
-					out += "["+next.toString(first,numColumns,1,counter+1);
-					
-					
-				}
-				else {
-					out += "]  "+"["+next.toString(first,numColumns,i+1,counter);
-	
-				}
-			}
-				
+		
+		if(next != first) {
+			out += next.upDateNumSeeds(first);
 		}
 		
 		return out;
 	}
 	
-	public String toString(BlockNode first,int numColumns,int i, int counter) {
+	
+	public String toStringLinks(BlockNode first,int numColumns,int i) {
+		String out = "";
+		
+		if(blockInfo.getLinkId() != null) {
+			out = blockInfo.getLinkId();
+		}
+		else {
+			out = " ";
+		}
+		
+		if(next != first) {
+			if(i == numColumns) {
+				out += "]";
+				out += "\n";
+				out += "["+next.toStringLinks(first,numColumns,1);
+			}
+			else {
+				out += "]  "+" ["+next.toStringLinks(first,numColumns,i+1);
+			}
+		}
+		
+		return out;
+	}
+	
+	public String toString(BlockNode first,int numColumns,int i) {
 		
 		String out  = "";
 		
-		//To calculate the number digits of id 
-		int aux = blockInfo.getId();
-		int n = 0;
-		
-		while(aux != 0) {
-			aux = aux/10;
-			n++;
-		}
-		
+	
 		if(blockInfo.getPlayer() != null) {
 			out = blockInfo.getPlayer().toString();
 		}
@@ -260,33 +264,20 @@ public class BlockNode {
 		else {
 			out = blockInfo.getId()+"";
 		}
+	
+		
 		
 		if(next != first) {
 			if(i == numColumns) {
 				out += "]";
 				out += "\n";
-				
-				out += "["+next.toString(first,numColumns,1,counter+1);
-				
-				
+				out += "["+next.toString(first,numColumns,1);
 			}
 			else {
-				
-				//If the id has more of 1 digits
-			
-				if(n>1) {
-					out += "]  "+"["+next.toString(first,numColumns,i+1,counter);
-				}
-				else {
-					out += "]  "+" ["+next.toString(first,numColumns,i+1,counter);
-				}
-						
-				
+				out += "]  "+" ["+next.toString(first,numColumns,i+1);
 			}
 			
 		}
-		
-	
 		
 		return out;
 	}

@@ -8,6 +8,8 @@ public class Player {
 	@SuppressWarnings("unused")
 	private String playerName;
 	@SuppressWarnings("unused")
+	private int numSeeds;
+	@SuppressWarnings("unused")
 	private int score;
 	private CharacterType character;
 	
@@ -24,6 +26,7 @@ public class Player {
 			character = CharacterType.MORTY;
 		}
 		
+		numSeeds = 0;
 		score = 0;
 	}
 	
@@ -37,6 +40,10 @@ public class Player {
 
 	public void setCharacter(CharacterType character) {
 		this.character = character;
+	}
+	
+	public void increaseSeeds() {
+		numSeeds++;
 	}
 	
 	

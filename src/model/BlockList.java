@@ -4,9 +4,10 @@ public class BlockList {
 	
 	//Attributes
 	private BlockNode first,last;
+	private int numSeeds;
 	
 	public BlockList() {
-		
+		numSeeds = 0;
 	}
 
 	public void add(int id) {
@@ -35,7 +36,6 @@ public class BlockList {
 		// movement == 1 --> Retroceder
 		
 		if(first == null) {
-			System.out.println("Entra first null");
 			return;
 		}
 		else {
@@ -48,7 +48,6 @@ public class BlockList {
 		// movement == 1 --> Retroceder
 				
 		if(first == null) {
-			System.out.println("Entra first null");
 			return;
 			}
 			else {
@@ -85,16 +84,50 @@ public class BlockList {
 		}
 	}
 	
+	public void toUpdateNumSeeds() {
+		if(first == null) {
+			return;
+		}
+		else {
+			//To get the new value of seeds
+			int aux = first.upDateNumSeeds(first);
+			setNumSeeds(aux); 
+		}
+	}
+	
 	
 	public String toShowList(int numColumns) {
 		if(first == null) {
 			return "[]";
 		}
 		else {
-			return "["+first.pruebaString(first,numColumns,1,1)+"]";
+			return "["+first.toString(first,numColumns,1)+"]";
 		}
-		
 	}
+	
+	public String toShowListWithLinks(int numColumns) {
+		if(first == null) {
+			return "[]";
+		}
+		else {
+			return "["+first.toStringLinks(first,numColumns,1)+"]";
+		}
+	}
+	
+	//
+	// === GETTERS AND SETTERS ===
+	// 
+	
+	public void setNumSeeds(int numSeeds) {
+		this.numSeeds = numSeeds;
+	}
+
+	public int getNumSeeds() {
+		return numSeeds;
+	}
+	
+	
+	
 	
 	
 }
