@@ -163,7 +163,7 @@ public class Main {
 			toShowGameBoardWithLinks();
 			break;
 		case 4: 
-			System.out.println("Hola 4");
+			 toShowScores();
 			break; 
 		default:
 			System.out.println("No valid option!!!");
@@ -234,7 +234,8 @@ public class Main {
 	}
 	
 	public void toShowScores() {
-		System.out.println();
+		System.out.println("*** SCORE BOARD ***");
+		System.out.println(gController.toShowScores());
 	}
 	
 	public void toSerialize() {

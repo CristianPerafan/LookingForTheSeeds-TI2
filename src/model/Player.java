@@ -46,6 +46,17 @@ public class Player {
 		numSeeds++;
 	}
 	
+	public String toShowScore() {
+		String out = "";
+		
+		if(character == CharacterType.RICK) {
+			out = "Rick: "+numSeeds + " seeds";
+		}
+		else if(character == CharacterType.MORTY) {
+			out = "Morty: "+numSeeds + " seeds";
+		}
+		return out;
+	}
 	
 	public String toString() {
 		String out = "";

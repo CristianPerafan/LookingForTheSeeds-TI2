@@ -12,6 +12,58 @@ public class BlockNode {
 		blockInfo = new BlockInformation(id);
 	}
 	
+	public Player lookForRickScore() {
+		
+		if(blockInfo.getPlayer() != null) {
+			if(blockInfo.getPlayer().getCharacter() == CharacterType.RICK) {
+				Player temp = blockInfo.getPlayer();	
+				return temp;
+			}
+			else {
+				return next.lookForRickScore();
+			}
+		}
+		else if(blockInfo.getSecondPlayer() != null) {
+			if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.RICK) {
+				Player temp = blockInfo.getSecondPlayer();
+				return temp;
+			}
+			else {
+				return next.lookForRickScore();
+			}
+		}
+		else {
+			return next.lookForRickScore();
+		}
+		
+		
+	}
+	
+	public Player lookForMortyScore() {
+		
+		if(blockInfo.getPlayer() != null) {
+			if(blockInfo.getPlayer().getCharacter() == CharacterType.MORTY) {
+				Player temp = blockInfo.getPlayer();	
+				return temp;
+			}
+			else {
+				return next.lookForMortyScore();
+			}
+		}
+		else if(blockInfo.getSecondPlayer() != null) {
+			if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.MORTY) {
+				Player temp = blockInfo.getSecondPlayer();
+				return temp;
+			}
+			else {
+				return next.lookForMortyScore();
+			}
+		}
+		else {
+			return next.lookForMortyScore();
+		}
+	}
+	
 	public void lookForRick(int resultDice, int movement) {
 		// movement == 0 --> Adelantar
 		// movement == 1 --> Retroceder
@@ -110,6 +162,7 @@ public class BlockNode {
 			
 			
 			if(blockInfo.getPlayer() == null) {
+				
 				blockInfo.setPlayer(temp);
 			}
 			else {

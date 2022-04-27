@@ -29,6 +29,11 @@ public class GameController {
 			list.add(i);
 		}
 		
+		//To set up players
+		p1 = new Player(playerR1,0);
+		p2 =  new Player(playerM2,1);
+	
+		
 		locateSeedInTheBoard(numSeeds);
 		//To locate the players in a random position
 		locateThePlayersInTheBoard(playerR1,playerM2);
@@ -111,9 +116,6 @@ public class GameController {
 	}
 	
 	
-	
-	
-	
 	public void locateThePlayersInTheBoard(String playerR1, String playerM2) {
 		
 		
@@ -129,11 +131,7 @@ public class GameController {
 		while(posMorty == posRick ) {
 			posMorty = (int)((Math.random()*numBlocks)+1);
 		}
-		
-		
-		
 		list.toLookForABlockAndLocatePlayer(posMorty,morty);
-		
 	}
 	
 	public String toShowGameBoard() {
@@ -146,6 +144,10 @@ public class GameController {
 		String out  = "";
 		out = list.toShowListWithLinks(numColumns);
 		return out;
+	}
+	
+	public String toShowScores() {
+		return list.toShowScores();
 	}
 	
 	

@@ -114,6 +114,22 @@ public class BlockList {
 		}
 	}
 	
+	public String toShowScores() {
+		String out = "[]";
+		if(first == null) {
+			return out;
+		}
+		else {
+			Player p1 = first.lookForRickScore(); 
+			Player p2 = first.lookForMortyScore();
+			
+			out = p1.toShowScore()+"\n";
+			out += p2.toShowScore();
+			
+			return out;
+		}
+	}
+	
 	//
 	// === GETTERS AND SETTERS ===
 	// 
