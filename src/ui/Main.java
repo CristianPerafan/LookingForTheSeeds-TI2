@@ -1,5 +1,7 @@
 package ui;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import model.GameController;
@@ -10,11 +12,15 @@ public class Main {
 	private static Scanner sc;
 	private GameController gController;
 	private boolean passTurn;
+	private int timeSecondsP1;
+	private int timeSecondsP2;
 	
 	public Main() {
 		passTurn = false;
 		sc = new Scanner(System.in);
 		gController = new GameController();
+		timeSecondsP1 = 0;
+		timeSecondsP2 = 0;
 	}
 
 	public static void main(String[] args) {
@@ -106,8 +112,22 @@ public class Main {
 			
 			while(passTurn == false) {
 				//Rick plays
+				
+				LocalDateTime startTurn = LocalDateTime.now();
 				int optionR = menuGameOptions("Rick");
 				executeGameOptions(optionR,0);
+				LocalDateTime finishTurn = LocalDateTime.now();
+				
+				Duration period = Duration.between(startTurn,finishTurn);
+				
+				int seconds = (int) period.getSeconds();
+				
+				toAddSeconds(seconds,0);
+				
+				
+				//
+				
+				
 			}
 			
 			passTurn = false;
@@ -117,8 +137,19 @@ public class Main {
 				
 				while(passTurn == false) {
 					//MortyPlays
+					LocalDateTime startTurn = LocalDateTime.now();
+					
 					int optionM = menuGameOptions("Morty");
 					executeGameOptions(optionM,1);
+					
+					LocalDateTime finishTurn = LocalDateTime.now();
+					Duration period = Duration.between(startTurn,finishTurn);
+					
+					int seconds = (int) period.getSeconds();
+					
+					toAddSeconds(seconds,1);
+					
+					
 				}
 				passTurn = false;
 				
@@ -238,7 +269,32 @@ public class Main {
 		System.out.println(gController.toShowScores());
 	}
 	
+	public void toAddSeconds(int seconds,int idPlayer) {
+		if(idPlayer == 0) {
+			timeSecondsP1 = timeSecondsP1+seconds;
+		}
+		else {
+			timeSecondsP2 = timeSecondsP2+seconds;
+		}
+	}
+	
+	public void toCalculateScore(int seconds, int seeds) {
+		
+	}
+	
+	public void toShowTopFive() {
+		
+	}
+	
 	public void toSerialize() {
+		
+	}
+	
+	public void addWinner() {
+		
+	}
+	
+	public void toLookForAWinner() {
 		
 	}
 	

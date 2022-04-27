@@ -160,20 +160,34 @@ public class BlockNode {
 				blockInfo.setSeed(false);
 			}
 			
-			
-			if(blockInfo.getPlayer() == null) {
-				
-				blockInfo.setPlayer(temp);
+			if(blockInfo.getLinkId() != null) {
+				System.out.println("Entra link next");
+				System.out.println("IdLink "+ blockInfo.getLinkId());
+				String idLink = blockInfo.getLinkId();
+				next.modifyLink(idLink,temp);
 			}
 			else {
-				blockInfo.setSecondPlayer(temp);
+				
+				if(blockInfo.getPlayer() == null) {
+					
+					blockInfo.setPlayer(temp);
+				}
+				else {
+					blockInfo.setSecondPlayer(temp);
+				}
+				
 			}
+			
+			
+			
 		}
 		else {
 			next.modifyNext(i = i+1,resultDice,temp);
 		}
 		
 	}
+	
+	
 	
 	public void modifyPrev(int i, int resultDice,Player temp) {
 		if(i == resultDice) {
@@ -183,15 +197,56 @@ public class BlockNode {
 				blockInfo.setSeed(false);
 			}
 			
-			if(blockInfo.getPlayer() == null) {
-				blockInfo.setPlayer(temp);
+			if(blockInfo.getLinkId() != null) {
+				System.out.println("Entra link prev");
+				System.out.println("IdLink "+ blockInfo.getLinkId());
+				String idLink = blockInfo.getLinkId();
+				next.modifyLink(idLink,temp);
 			}
 			else {
-				blockInfo.setSecondPlayer(temp);
+				if(blockInfo.getPlayer() == null) {
+					blockInfo.setPlayer(temp);
+				}
+				else {
+					blockInfo.setSecondPlayer(temp);
+				}
 			}
+			
+			
 		}
 		else {
 			previous.modifyPrev(i = i+1, resultDice, temp);
+		}
+	}
+	
+	public void modifyLink(String idLink, Player temp) {
+		
+		if(blockInfo.getLinkId() != null) {
+			if(blockInfo.getLinkId().equals(idLink)) {
+				System.out.println("Enceuntra pareja");
+				
+				if(blockInfo.getSeed() == true) {
+					temp.increaseSeeds();
+					blockInfo.setSeed(false);
+				}
+				
+				if(blockInfo.getPlayer() == null) {
+					
+					blockInfo.setPlayer(temp);
+				}
+				else {
+					blockInfo.setSecondPlayer(temp);
+				}
+				
+			}
+			else {
+				System.out.println("Busca siguiente");
+				next.modifyLink(idLink, temp);
+			}
+		}
+		else {
+			System.out.println("Busca siguiente");
+			next.modifyLink(idLink, temp);
 		}
 	}
 	
@@ -306,7 +361,12 @@ public class BlockNode {
 		
 	
 		if(blockInfo.getPlayer() != null) {
-			out = blockInfo.getPlayer().toString();
+			if(blockInfo.getSecondPlayer() != null) {
+				out = blockInfo.getPlayer().toString()+ blockInfo.getSecondPlayer().toString();
+			}else {
+				out = blockInfo.getPlayer().toString();
+			}
+			
 		}
 		else if(blockInfo.getSecondPlayer() != null) {
 			out = blockInfo.getSecondPlayer().toString();

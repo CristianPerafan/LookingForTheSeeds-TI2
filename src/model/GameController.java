@@ -1,15 +1,20 @@
 package model;
 
+import java.util.ArrayList;
+
 public class GameController {
 	//Attributes
 	@SuppressWarnings("unused")
 	private int numColumns,numRows,numBlocks,numLinks;
-	
 	private BlockList list;
+	@SuppressWarnings("unused")
+	private ArrayList<Player> listOfPlayers;
+
 	
 	
 	public GameController() {
 		list = new BlockList();
+		listOfPlayers = new ArrayList<Player>();
 	}
 	
 	public void toSetUpGameBoard(int numColumns, int numRows,int numSeeds, int numLinks,
@@ -29,9 +34,6 @@ public class GameController {
 			list.add(i);
 		}
 		
-		//To set up players
-		p1 = new Player(playerR1,0);
-		p2 =  new Player(playerM2,1);
 	
 		
 		locateSeedInTheBoard(numSeeds);
@@ -132,6 +134,10 @@ public class GameController {
 			posMorty = (int)((Math.random()*numBlocks)+1);
 		}
 		list.toLookForABlockAndLocatePlayer(posMorty,morty);
+	}
+	
+	public void toCalculateScore(int seconds, int seeds) {
+		
 	}
 	
 	public String toShowGameBoard() {
