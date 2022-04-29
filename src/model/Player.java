@@ -30,6 +30,11 @@ public class Player {
 		score = 0;
 	}
 	
+	public Player (int score, String playerName) {
+		this.playerName = playerName;
+		this.score = score; 
+	}
+	
 	//
 	// === GETTERS AND SETTERS
 	//
@@ -71,7 +76,25 @@ public class Player {
 		return out;
 	}
 
-	
+	public String dataPlayerSave() {
+		return playerName + "     -     " + score; 
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 	
 	
 }

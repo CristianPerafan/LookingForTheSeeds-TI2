@@ -162,4 +162,27 @@ public class GameController {
 		
 		return (ns>0)?true:false;
 	}
+	
+	public void addWinPlayer(int score, String name) {
+		Player newPlayer = new Player (score, name);
+		
+		listOfPlayers.add(newPlayer);
+		
+	}
+	
+	public void sortWinPlayers() {
+		int n = listOfPlayers.size();
+		boolean flag = true; 
+		for (int i = 0; i < n && flag; i++) {
+			flag = false;
+	    	for (int j = 1; j < n - i; j++) {
+	    		if (listOfPlayers.get(j).getScore()>listOfPlayers.get(j+1).getScore()) {
+	    			Player temp = listOfPlayers.get(j);
+	    			listOfPlayers.set(j, listOfPlayers.get(j-1));
+	    	        listOfPlayers.set(j-1, temp);
+	    			flag = true;
+	    		}
+	    	}
+	    }
+	}
 }
