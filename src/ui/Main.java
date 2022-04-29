@@ -1,3 +1,4 @@
+
 package ui;
 
 import java.time.Duration;
@@ -160,6 +161,10 @@ public class Main {
 			}
 			else {
 				stopGame = true;
+				
+				//Acá se pasan los parámetros para calcular el puntaje de la persona ganadora.
+				//AGREGAR CONTADORES DE SEMILLAS
+				
 			}
 			
 			
@@ -280,6 +285,9 @@ public class Main {
 	
 	public void toCalculateScore(int seconds, int seeds) {
 		
+		//Considerar modificación de este método.
+		int scoreWinner = (seeds*120)-seconds; 
+		
 	}
 	
 	public void toShowTopFive() {
@@ -291,7 +299,8 @@ public class Main {
 	}
 	
 	public void addWinner() {
-		
+		//Acá debemos encontrar la forma de pasar como parámetros los datos de jugadores (nombre, puntaje)
+		//Preguntar a Cristian.
 	}
 	
 	public void toLookForAWinner() {
