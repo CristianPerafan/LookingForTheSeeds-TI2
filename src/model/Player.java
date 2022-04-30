@@ -79,9 +79,23 @@ public class Player {
 	public String dataPlayerSave() {
 		return playerName + "     -     " + score; 
 	}
+	
+	//
+	// === GETTERS AND SETTERS
+	//
+	
+	
 
 	public String getPlayerName() {
 		return playerName;
+	}
+
+	public int getNumSeeds() {
+		return numSeeds;
+	}
+
+	public void setNumSeeds(int numSeeds) {
+		this.numSeeds = numSeeds;
 	}
 
 	public void setPlayerName(String playerName) {

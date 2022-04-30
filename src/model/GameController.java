@@ -7,7 +7,6 @@ public class GameController {
 	@SuppressWarnings("unused")
 	private int numColumns,numRows,numBlocks,numLinks;
 	private BlockList list;
-	@SuppressWarnings("unused")
 	private ArrayList<Player> listOfPlayers;
 
 	
@@ -33,8 +32,6 @@ public class GameController {
 		for(int i = 1;i<=numBlocks;i++) {
 			list.add(i);
 		}
-		
-	
 		
 		locateSeedInTheBoard(numSeeds);
 		//To locate the players in a random position
@@ -136,9 +133,8 @@ public class GameController {
 		list.toLookForABlockAndLocatePlayer(posMorty,morty);
 	}
 	
-	public void toCalculateScore(int seconds, int seeds) {
-		
-	}
+	
+	
 	
 	public String toShowGameBoard() {
 		String out = "";
@@ -163,11 +159,60 @@ public class GameController {
 		return (ns>0)?true:false;
 	}
 	
+
+	
+	public void toChooseWinner(int secondsR, int secondsM) {
+	
+		//To calculate rick score
+		Player rick = list.toGetFinalStateRick();
+		
+		Player morty = list.toGetFinalStateRick();
+		
+		if(rick.getNumSeeds()>morty.getNumSeeds()) {
+			//Rick is the winner
+			int scoreWinner = toCalculateScore(secondsR,rick.getNumSeeds());
+			
+			//To add winner (Rick-P1) in the list
+			addWinPlayer(scoreWinner,rick.getPlayerName());
+			
+			
+		} //In this case there is tie
+		else if(rick.getNumSeeds()==morty.getNumSeeds()) {
+			if(secondsR>secondsM) {
+				//Rick is the winner
+				int scoreWinner = toCalculateScore(secondsR,rick.getNumSeeds());
+				
+				//To add winner (Rick-P1) in the list for time
+				addWinPlayer(scoreWinner,rick.getPlayerName());
+			}
+			else {
+				//Morty is the winner
+				int scoreWinner = toCalculateScore(secondsM,morty.getNumSeeds());
+				
+				//To add winner (Morty-P2) in the list
+				addWinPlayer(scoreWinner,morty.getPlayerName());
+			}
+		}
+		else {
+			//Morty is the winner
+			int scoreWinner = toCalculateScore(secondsM,morty.getNumSeeds());
+			
+			//To add winner (Morty-P2) in the list
+			addWinPlayer(scoreWinner,morty.getPlayerName());
+		}
+		
+		
+	}
+	
 	public void addWinPlayer(int score, String name) {
 		Player newPlayer = new Player (score, name);
-		
 		listOfPlayers.add(newPlayer);
 		
+	}
+	
+	public int toCalculateScore(int seconds, int seeds) {
+		
+		return (seeds*120)-seconds; 
 	}
 	
 	public void sortWinPlayers() {

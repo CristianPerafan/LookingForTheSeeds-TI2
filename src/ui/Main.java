@@ -109,8 +109,6 @@ public class Main {
 	
 		while(stopGame == false) {
 			
-			
-			
 			while(passTurn == false) {
 				//Rick plays
 				
@@ -128,13 +126,12 @@ public class Main {
 				
 				//
 				
-				
 			}
 			
 			passTurn = false;
 			
 			
-			if(gController.verifyNumSeeds()) {
+			if(gController.verifyNumSeeds() == true) {
 				
 				while(passTurn == false) {
 					//MortyPlays
@@ -156,21 +153,13 @@ public class Main {
 				
 				if(!gController.verifyNumSeeds()) {
 					stopGame = true;
-					
 				}
 			}
 			else {
 				stopGame = true;
-				
-				//Acá se pasan los parámetros para calcular el puntaje de la persona ganadora.
-				//AGREGAR CONTADORES DE SEMILLAS
-				
+				addWinner(timeSecondsP1,timeSecondsP2);
 			}
-			
-			
 		}
-		
-		System.out.println();
 	}
 
 
@@ -283,16 +272,8 @@ public class Main {
 		}
 	}
 	
-<<<<<<< HEAD
 
-=======
-	public void toCalculateScore(int seconds, int seeds) {
-		
-		//Considerar modificación de este método.
-		int scoreWinner = (seeds*120)-seconds; 
-		
-	}
->>>>>>> 8602977c8d19baa600d42cfb8e3bbf98410cee81
+
 	
 	public void toShowTopFive() {
 		
@@ -302,14 +283,11 @@ public class Main {
 		
 	}
 	
-	public void addWinner() {
-		//Acá debemos encontrar la forma de pasar como parámetros los datos de jugadores (nombre, puntaje)
-		//Preguntar a Cristian.
+	public void addWinner(int secondsP1, int secondsP2) {
+		gController.toChooseWinner(secondsP1, secondsP2);
 	}
 	
-	public void toLookForAWinner() {
-		
-	}
+	
 	
 	public void toDeserialize() {
 		

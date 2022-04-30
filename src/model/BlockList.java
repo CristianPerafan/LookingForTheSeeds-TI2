@@ -130,6 +130,19 @@ public class BlockList {
 		}
 	}
 	
+	public Player toGetFinalStateRick() {
+		
+		Player rick = first.lookForRickScore();
+		
+		return rick;
+	}
+	
+	public Player toGetFinalStateMorty() {
+		Player morty = first.lookForMortyScore();
+		
+		return morty;
+	}
+	
 	//
 	// === GETTERS AND SETTERS ===
 	// 
