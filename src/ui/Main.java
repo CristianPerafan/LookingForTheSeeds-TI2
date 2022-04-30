@@ -278,9 +278,7 @@ public class Main {
 		}
 	}
 	
-	public void toCalculateScore(int seconds, int seeds) {
-		
-	}
+
 	
 	public void toShowTopFive() {
 		
