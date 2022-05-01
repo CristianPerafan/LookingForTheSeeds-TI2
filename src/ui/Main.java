@@ -96,7 +96,7 @@ public class Main {
 		pc.toShowGameBoard();
 		
 		pc.toStartGame();
-		//Ac· deberian ir los mÈtodos de menu y jugabilidad.
+		//Ac√° deberian ir los m√©todos de menu y jugabilidad.
 		
 	}
 	
