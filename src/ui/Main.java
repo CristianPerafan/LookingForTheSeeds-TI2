@@ -1,6 +1,7 @@
 
 package ui;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -28,7 +29,14 @@ public class Main {
 		
 		Main pc = new Main();
 		
-
+		int columns,rows,seeds;
+		int numLinks = 0;
+		
+		
+		if(pc.validateFile()==true) {
+			pc.toDeserialize();
+		}
+		
 		System.out.println("  ___   _        _                        _ \r\n"
 				+ " | _ \\ (_)  __  | |__    __ _   _ _    __| |\r\n"
 				+ " |   / | | / _| | / /   / _` | | ' \\  / _` |\r\n"
@@ -38,44 +46,6 @@ public class Main {
 				+ " | |\\/| | / _ \\ | '_| |  _| | || |\r\n"
 				+ " |_|  |_| \\___/ |_|    \\__|  \\_, |\r\n"
 				+ "                             |__/ ");
-		
-		
-		
-		int option = 0;
-		
-		do {
-			System.out.println("(1) Start game\n"+
-					"(2) See top 5\n"+
-					"(0) Exit");
-			
-			option = sc.nextInt();
-			pc.toExecuteOperation(option);
-			
-		}while(option!=0);
-	}
-	
-	public void toExecuteOperation(int option) {
-		switch(option) {
-		case 0:
-			System.out.println("Bye see you later");
-			break;
-		case 1:
-			toSetUpTheGame();
-			break;
-		case 2:
-			toShowTopFive();
-			break;
-		default:
-			System.out.println("No valid option!!!");
-			break;
-		}
-	}
-	
-
-	
-	public void toSetUpTheGame() {
-		int columns,rows,seeds;
-		int numLinks = 0;
 		
 		System.out.println("Enter the number of columns: ");
 		//columns = sc.nextInt();
@@ -115,18 +85,21 @@ public class Main {
 		
 		System.out.println("Enter the player name of who is goint to play as Rick: ");
 		//rickPlayer = sc.nextLine();
-		rickPlayer = "C";
+		rickPlayer = "Cris";
 		
 		System.out.println("Enter the player name of who is goint to play as Rick: ");
 		//mortyPlayer = sc.nextLine();
-		mortyPlayer = "F";
+		mortyPlayer = "Felipe";
 		
-		toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
+		pc.toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
-		toShowGameBoard();
+		pc.toShowGameBoard();
 		
-		toStartGame();
+		pc.toStartGame();
+		//Acá deberian ir los métodos de menu y jugabilidad.
+		
 	}
+	
 	public void toCreateGameBoard(int columns, int rows, int seeds, int numLinks,
 			String rickPlayer, String mortyPlayer) {
 		
@@ -190,6 +163,14 @@ public class Main {
 			else {
 				stopGame = true;
 				addWinner(timeSecondsP1,timeSecondsP2);
+				
+				
+				//Agregar cosa que revele quien gano.
+				
+				System.out.println("**Top 5 best players**");
+				toShowTopFive();
+				System.out.println("Fin");
+				toSerialize();  
 			}
 		}
 	}
@@ -308,14 +289,36 @@ public class Main {
 
 	
 	public void toShowTopFive() {
-		System.out.println("*** TOP FIVE ***");
+		System.out.println(gController.listTopPlayers());
 	}
 	
-
+	public void toSerialize() {
+		try {
+			gController.serializar();
+		} catch (IOException e) {
+			System.out.println("Problems in players file.");
+			e.printStackTrace();
+		}
+	}
 	
 	public void addWinner(int secondsP1, int secondsP2) {
 		gController.toChooseWinner(secondsP1, secondsP2);
 	}
 	
-
+	
+	
+	public void toDeserialize()  {
+		try {
+			gController.deserializar();
+		} catch (ClassNotFoundException | IOException e) {
+			System.out.println("Problems in players file.");
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean validateFile() {
+		return gController.validatePlayersFile(); 
+	}
+	
+	
 }
