@@ -276,9 +276,7 @@ public class GameController {
 		
 		String out = ""; 
 		int j = 0; 
-		//Cambiar condición for
 		for(int i =listOfPlayers.size()-1; i>=0;i--) {
-			System.out.println("Holi");
 			if(j==5) {
 				break; 
 			}else {
