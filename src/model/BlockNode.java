@@ -20,7 +20,19 @@ public class BlockNode {
 				return temp;
 			}
 			else {
-				return next.lookForRickScore();
+				//Acá se hace agregación de cambio
+				if(blockInfo.getSecondPlayer() != null){
+			        if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.RICK){
+			        	Player temp = blockInfo.getSecondPlayer();
+			        	return temp;
+			        }
+			        else{
+			             return next.lookForRickScore();
+			       }
+				}else {
+					return next.lookForRickScore(); //Agrege esto acá porque el método manda error.
+				}
+				
 			}
 		}
 		else if(blockInfo.getSecondPlayer() != null) {
@@ -33,6 +45,7 @@ public class BlockNode {
 			}
 		}
 		else {
+			
 			return next.lookForRickScore();
 		}
 		
@@ -47,7 +60,19 @@ public class BlockNode {
 				return temp;
 			}
 			else {
-				return next.lookForMortyScore();
+				//Acá se hace agregación de cambio
+				if(blockInfo.getSecondPlayer() != null){
+			        if(blockInfo.getSecondPlayer().getCharacter() == CharacterType.MORTY){
+			        	Player temp = blockInfo.getSecondPlayer();
+			        	return temp;
+			        }
+			        else{
+			             return next.lookForMortyScore();
+			       }
+				}else {
+					return next.lookForMortyScore(); //Agrege esto acá porque el método manda error.
+				}
+				
 			}
 		}
 		else if(blockInfo.getSecondPlayer() != null) {
@@ -60,8 +85,10 @@ public class BlockNode {
 			}
 		}
 		else {
+			
 			return next.lookForMortyScore();
 		}
+		
 	}
 	
 	public void lookForRick(int resultDice, int movement) {
