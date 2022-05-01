@@ -1,5 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class GameController {
@@ -8,10 +14,11 @@ public class GameController {
 	private int numColumns,numRows,numBlocks,numLinks;
 	private BlockList list;
 	private ArrayList<Player> listOfPlayers;
-
+	private File file; 
 	
 	
 	public GameController() {
+		file = new File(".\\files\\players.txt");
 		list = new BlockList();
 		listOfPlayers = new ArrayList<Player>();
 	}
@@ -166,7 +173,7 @@ public class GameController {
 		//To calculate rick score
 		Player rick = list.toGetFinalStateRick();
 		
-		Player morty = list.toGetFinalStateRick();
+		Player morty = list.toGetFinalStateMorty();
 		
 		if(rick.getNumSeeds()>morty.getNumSeeds()) {
 			//Rick is the winner
@@ -207,6 +214,7 @@ public class GameController {
 	public void addWinPlayer(int score, String name) {
 		Player newPlayer = new Player (score, name);
 		listOfPlayers.add(newPlayer);
+		System.out.println("se agrega, lol");
 		
 	}
 	
@@ -229,5 +237,56 @@ public class GameController {
 	    		}
 	    	}
 	    }
+	}
+	public ArrayList<Player> getPlayers(){
+		return listOfPlayers; 
+	}
+	public void serializar() throws IOException {
+		//File file = new File(".\\files\\players.txt");
+		FileOutputStream fos = new FileOutputStream(file);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		
+		oos.writeObject(getPlayers());
+		
+		oos.close();
+		fos.close();	
+	}
+	
+	public void deserializar() throws IOException, ClassNotFoundException {
+		//File file = new File(".\\files\\players.txt");
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		ArrayList<Player> obj = (ArrayList<Player>)ois.readObject();
+		listOfPlayers.addAll(obj);
+		ois.close();
+		fis.close();
+	}
+	
+	public boolean validatePlayersFile() {
+		
+		if(file.length()==0) {
+			return false; 
+		}else {
+			return true; 
+		}
+	}
+	
+	public String listTopPlayers() {
+		
+		String out = ""; 
+		int j = 0; 
+		//Cambiar condición for
+		for(int i =listOfPlayers.size()-1; i>=0;i--) {
+			System.out.println("Holi");
+			if(j==5) {
+				break; 
+			}else {
+				out+=listOfPlayers.get(i).dataPlayerSave()+"\n"; 
+				j++;
+			}
+		}
+		
+		return out; 
 	}
 }

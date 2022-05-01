@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
+
 import enums.CharacterType;
 
-public class Player {
+public class Player implements Serializable{
 	
 	//Attributes
 	@SuppressWarnings("unused")

@@ -1,6 +1,7 @@
 
 package ui;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -31,7 +32,11 @@ public class Main {
 		int columns,rows,seeds;
 		int numLinks = 0;
 		
-
+		
+		if(pc.validateFile()==true) {
+			pc.toDeserialize();
+		}
+		
 		System.out.println("  ___   _        _                        _ \r\n"
 				+ " | _ \\ (_)  __  | |__    __ _   _ _    __| |\r\n"
 				+ " |   / | | / _| | / /   / _` | | ' \\  / _` |\r\n"
@@ -80,11 +85,11 @@ public class Main {
 		
 		System.out.println("Enter the player name of who is goint to play as Rick: ");
 		//rickPlayer = sc.nextLine();
-		rickPlayer = "C";
+		rickPlayer = "Cris";
 		
 		System.out.println("Enter the player name of who is goint to play as Rick: ");
 		//mortyPlayer = sc.nextLine();
-		mortyPlayer = "F";
+		mortyPlayer = "Felipe";
 		
 		pc.toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
@@ -158,6 +163,14 @@ public class Main {
 			else {
 				stopGame = true;
 				addWinner(timeSecondsP1,timeSecondsP2);
+				
+				
+				//Agregar cosa que revele quien gano.
+				
+				System.out.println("**Top 5 best players**");
+				toShowTopFive();
+				System.out.println("Fin");
+				toSerialize();  
 			}
 		}
 	}
@@ -276,11 +289,16 @@ public class Main {
 
 	
 	public void toShowTopFive() {
-		
+		System.out.println(gController.listTopPlayers());
 	}
 	
 	public void toSerialize() {
-		
+		try {
+			gController.serializar();
+		} catch (IOException e) {
+			System.out.println("Problems in players file.");
+			e.printStackTrace();
+		}
 	}
 	
 	public void addWinner(int secondsP1, int secondsP2) {
@@ -289,10 +307,18 @@ public class Main {
 	
 	
 	
-	public void toDeserialize() {
-		
+	public void toDeserialize()  {
+		try {
+			gController.deserializar();
+		} catch (ClassNotFoundException | IOException e) {
+			System.out.println("Problems in players file.");
+			e.printStackTrace();
+		}
 	}
-
+	
+	public boolean validateFile() {
+		return gController.validatePlayersFile(); 
+	}
 	
 	
 }
