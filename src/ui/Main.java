@@ -26,8 +26,13 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		
 		Main pc = new Main();
+		
+		if(pc.validateFile()==true) {
+			System.out.println("kk");
+			pc.toDeserialize();
+		}
+		
 	
 		int option = 0;
 		
@@ -61,6 +66,7 @@ public class Main {
 		switch(option) {
 		case 0:
 			System.out.println("Bye see you later");
+			toSerialize();  
 			break;
 		case 1:
 			toSetUpInitialGame();
@@ -77,11 +83,7 @@ public class Main {
 	public void toSetUpInitialGame() {
 		int columns,rows,seeds;
 		int numLinks = 0;
-		
-		
-		if(validateFile()==true) {
-			toDeserialize();
-		}
+	
 		
 		
 		System.out.println("Enter the number of columns: ");
@@ -205,7 +207,7 @@ public class Main {
 				System.out.println("**Top 5 best players**");
 				toShowTopFive();
 				System.out.println("Fin");
-				toSerialize();  
+
 			}
 		}
 	}

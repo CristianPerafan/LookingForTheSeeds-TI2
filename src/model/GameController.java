@@ -224,12 +224,8 @@ public class GameController {
 	}
 	
 	public void probarList() {
-		Player p1 = new Player(180,"Cristian");
-		Player p2 = new Player(200,"Felipe");
-		Player p3 = new Player(500,"Carlos");
-		listOfPlayers.add(p1);
-		listOfPlayers.add(p2);
-		listOfPlayers.add(p3);
+	
+		
 		sortByName();
 		
 		for(int i = 0;i<listOfPlayers.size();i++) {
