@@ -28,14 +28,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Main pc = new Main();
-		
-		int columns,rows,seeds;
-		int numLinks = 0;
-		
-		
-		if(pc.validateFile()==true) {
-			pc.toDeserialize();
-		}
+	
+		int option = 0;
 		
 		System.out.println("  ___   _        _                        _ \r\n"
 				+ " | _ \\ (_)  __  | |__    __ _   _ _    __| |\r\n"
@@ -46,6 +40,49 @@ public class Main {
 				+ " | |\\/| | / _ \\ | '_| |  _| | || |\r\n"
 				+ " |_|  |_| \\___/ |_|    \\__|  \\_, |\r\n"
 				+ "                             |__/ ");
+		
+
+		do {
+			System.out.println("(1) Start game\n"+
+					"(2) See top 5\n"+
+					"(0) Exit");
+
+			option = sc.nextInt();
+			pc.toExecuteOperation(option);
+
+		}while(option!=0);
+		
+		
+		//Acá deberian ir los métodos de menu y jugabilidad.
+		
+	}
+	
+	public void toExecuteOperation(int option) {
+		switch(option) {
+		case 0:
+			System.out.println("Bye see you later");
+			break;
+		case 1:
+			toSetUpInitialGame();
+			break;
+		case 2:
+			toShowTopFive();
+			break;
+		default:
+			System.out.println("No valid option!!!");
+			break;
+		}
+	}
+	
+	public void toSetUpInitialGame() {
+		int columns,rows,seeds;
+		int numLinks = 0;
+		
+		
+		if(validateFile()==true) {
+			toDeserialize();
+		}
+		
 		
 		System.out.println("Enter the number of columns: ");
 		//columns = sc.nextInt();
@@ -91,13 +128,11 @@ public class Main {
 		//mortyPlayer = sc.nextLine();
 		mortyPlayer = "Felipe";
 		
-		pc.toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
+		toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
-		pc.toShowGameBoard();
+		toShowGameBoard();
 		
-		pc.toStartGame();
-		//Acá deberian ir los métodos de menu y jugabilidad.
-		
+		toStartGame();
 	}
 	
 	public void toCreateGameBoard(int columns, int rows, int seeds, int numLinks,
@@ -289,7 +324,7 @@ public class Main {
 
 	
 	public void toShowTopFive() {
-		System.out.println(gController.listTopPlayers());
+		gController.probarList();
 	}
 	
 	public void toSerialize() {

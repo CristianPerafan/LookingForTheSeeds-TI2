@@ -223,13 +223,30 @@ public class GameController {
 		return (seeds*120)-seconds; 
 	}
 	
+	public void probarList() {
+		Player p1 = new Player(180,"Cristian");
+		Player p2 = new Player(200,"Felipe");
+		Player p3 = new Player(500,"Carlos");
+		listOfPlayers.add(p1);
+		listOfPlayers.add(p2);
+		listOfPlayers.add(p3);
+		sortByName();
+		
+		for(int i = 0;i<listOfPlayers.size();i++) {
+			System.out.println("i: "+i);
+			System.out.println(listOfPlayers.get(i).toShowTopFive());
+		}
+		
+	}
+	
 	public void sortWinPlayers() {
-		int n = listOfPlayers.size();
+		int n = listOfPlayers.size()-1;
 		boolean flag = true; 
 		for (int i = 0; i < n && flag; i++) {
+			System.out.println("n:"+n);
 			flag = false;
 	    	for (int j = 1; j < n - i; j++) {
-	    		if (listOfPlayers.get(j).getScore()>listOfPlayers.get(j+1).getScore()) {
+	    		if (listOfPlayers.get(j).getScore()>listOfPlayers.get(j-1).getScore()) {
 	    			Player temp = listOfPlayers.get(j);
 	    			listOfPlayers.set(j, listOfPlayers.get(j-1));
 	    	        listOfPlayers.set(j-1, temp);
@@ -238,6 +255,25 @@ public class GameController {
 	    	}
 	    }
 	}
+	
+	public void sortByName() {
+		int n = listOfPlayers.size();
+		boolean flag = true;
+		
+		for(int i = 0;i<n && flag;i++) {
+			flag = false;
+			for(int j = 1;j<n-i;j++) {
+				if(listOfPlayers.get(j).compareByName(listOfPlayers.get(j-1))<0) {
+					Player temp = listOfPlayers.get(j);
+					listOfPlayers.set(j,listOfPlayers.get(j-1));
+					listOfPlayers.set(j-1, temp);
+					flag = true;
+				}
+			}
+		}
+		
+	}
+	
 	public ArrayList<Player> getPlayers(){
 		return listOfPlayers; 
 	}

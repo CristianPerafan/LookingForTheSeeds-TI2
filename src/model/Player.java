@@ -4,14 +4,12 @@ import java.io.Serializable;
 
 import enums.CharacterType;
 
+@SuppressWarnings("serial")
 public class Player implements Serializable{
 	
 	//Attributes
-	@SuppressWarnings("unused")
 	private String playerName;
-	@SuppressWarnings("unused")
 	private int numSeeds;
-	@SuppressWarnings("unused")
 	private int score;
 	private CharacterType character;
 	
@@ -77,11 +75,40 @@ public class Player implements Serializable{
 		
 		return out;
 	}
+	
+	
+	public String toShowTopFive() {
+		return playerName+" --- "+score;
+	}
 
 	public String dataPlayerSave() {
 		return playerName + "     -     " + score; 
 	}
 	
+	public int compareByAge(Player other) {
+		int out = 0;
+		
+		if(this.getScore()>other.getScore()) {
+			out = 1;
+		}
+		else if(this.getScore()<other.getScore()) {
+			out = -1;
+		}
+		
+		return out;
+	}
+	
+	public int compareByName(Player other) {
+		int out = 0;
+		if(this.getPlayerName().compareTo(other.getPlayerName())>0) {
+			out = 1;
+		}
+		else if(this.getPlayerName().compareTo(other.getPlayerName())<0) {
+			out = -1;
+		}
+		
+		return out;
+	}
 	//
 	// === GETTERS AND SETTERS
 	//
