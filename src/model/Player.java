@@ -85,7 +85,7 @@ public class Player implements Serializable{
 		return playerName + "     -     " + score; 
 	}
 	
-	public int compareByAge(Player other) {
+	public int compareByScore(Player other) {
 		int out = 0;
 		
 		if(this.getScore()>other.getScore()) {
@@ -138,6 +138,8 @@ public class Player implements Serializable{
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+	
 	
 	
 }

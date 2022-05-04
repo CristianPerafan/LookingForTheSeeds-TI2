@@ -4,6 +4,7 @@ package ui;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.GameController;
@@ -29,12 +30,11 @@ public class Main {
 		Main pc = new Main();
 		
 		if(pc.validateFile()==true) {
-			System.out.println("kk");
 			pc.toDeserialize();
 		}
 		
 	
-		int option = 0;
+		int option = 1;
 		
 		System.out.println("  ___   _        _                        _ \r\n"
 				+ " | _ \\ (_)  __  | |__    __ _   _ _    __| |\r\n"
@@ -44,23 +44,29 @@ public class Main {
 				+ " |  \\/  |  ___   _ _  | |_   _  _ \r\n"
 				+ " | |\\/| | / _ \\ | '_| |  _| | || |\r\n"
 				+ " |_|  |_| \\___/ |_|    \\__|  \\_, |\r\n"
-				+ "                             |__/ ");
+				+ "                             |__/ "); 
+
 		
-
+		
 		do {
-			System.out.println("(1) Start game\n"+
-					"(2) See top 5\n"+
-					"(0) Exit");
-
-			option = sc.nextInt();
-			pc.toExecuteOperation(option);
-
+				
+				
+				System.out.println("(1) Start game\n"+
+						"(2) See top 5\n"+
+						"(0) Exit");
+	
+				option = sc.nextInt();
+				pc.toExecuteOperation(option);
+				
 		}while(option!=0);
 		
 		
-		//Acá deberian ir los métodos de menu y jugabilidad.
+		
 		
 	}
+	
+	
+	
 	
 	public void toExecuteOperation(int option) {
 		switch(option) {
@@ -73,6 +79,7 @@ public class Main {
 			break;
 		case 2:
 			toShowTopFive();
+			
 			break;
 		default:
 			System.out.println("No valid option!!!");
@@ -81,30 +88,42 @@ public class Main {
 	}
 	
 	public void toSetUpInitialGame() {
-		int columns,rows,seeds;
+		int columns,rows,seeds = 0;
 		int numLinks = 0;
 	
 		
 		
 		System.out.println("Enter the number of columns: ");
-		//columns = sc.nextInt();
-		columns = 4;
+		columns = sc.nextInt();
+		
 		
 		System.out.println("Enter the number of rows: ");
-		//rows = sc.nextInt();
-		rows = 4;
+		rows = sc.nextInt();
+		
 		
 		System.out.println("Enter the number of seeds: ");
-		//seeds = sc.nextInt();
-		seeds = 6;
+		
+		
+		boolean stop = false;
+		while(stop == false) {
+			seeds = sc.nextInt();
+			
+			double aux = 0.5*(columns*rows);
+			
+			if(seeds<aux) {
+				stop = true;
+			}
+			else {
+				System.out.println("You must enter a number less than "+(int)aux);
+			}
+		}
 		
 		System.out.println("Enter the number of game links: ");
-		boolean stop = false;
+		stop = false;
 		
 		while(stop == false) {
 			
-			//numLinks = sc.nextInt();
-			numLinks = 3;
+			numLinks = sc.nextInt();
 			
 			double aux = 0.5*(columns*rows);
 			if(numLinks<aux) {
@@ -123,12 +142,12 @@ public class Main {
 		String rickPlayer,mortyPlayer;
 		
 		System.out.println("Enter the player name of who is goint to play as Rick: ");
-		//rickPlayer = sc.nextLine();
-		rickPlayer = "Cris";
+		rickPlayer = sc.nextLine();
+	
 		
-		System.out.println("Enter the player name of who is goint to play as Rick: ");
-		//mortyPlayer = sc.nextLine();
-		mortyPlayer = "Felipe";
+		System.out.println("Enter the player name of who is goint to play as Morty: ");
+		mortyPlayer = sc.nextLine();
+		
 		
 		toCreateGameBoard(columns, rows, seeds, numLinks, rickPlayer, mortyPlayer);
 		
@@ -326,7 +345,7 @@ public class Main {
 
 	
 	public void toShowTopFive() {
-		gController.probarList();
+		System.out.println(gController.toShowTopFive());
 	}
 	
 	public void toSerialize() {

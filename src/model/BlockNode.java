@@ -188,8 +188,6 @@ public class BlockNode {
 			}
 			
 			if(blockInfo.getLinkId() != null) {
-				System.out.println("Entra link next");
-				System.out.println("IdLink "+ blockInfo.getLinkId());
 				String idLink = blockInfo.getLinkId();
 				next.modifyLink(idLink,temp);
 			}
@@ -225,8 +223,6 @@ public class BlockNode {
 			}
 			
 			if(blockInfo.getLinkId() != null) {
-				System.out.println("Entra link prev");
-				System.out.println("IdLink "+ blockInfo.getLinkId());
 				String idLink = blockInfo.getLinkId();
 				next.modifyLink(idLink,temp);
 			}
@@ -250,7 +246,6 @@ public class BlockNode {
 		
 		if(blockInfo.getLinkId() != null) {
 			if(blockInfo.getLinkId().equals(idLink)) {
-				System.out.println("Enceuntra pareja");
 				
 				if(blockInfo.getSeed() == true) {
 					temp.increaseSeeds();
@@ -267,12 +262,10 @@ public class BlockNode {
 				
 			}
 			else {
-				System.out.println("Busca siguiente");
 				next.modifyLink(idLink, temp);
 			}
 		}
 		else {
-			System.out.println("Busca siguiente");
 			next.modifyLink(idLink, temp);
 		}
 	}
