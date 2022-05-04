@@ -212,10 +212,18 @@ public class GameController {
 	}
 	
 	public void addWinPlayer(int score, String name) {
-		Player newPlayer = new Player (score, name);
-		listOfPlayers.add(newPlayer);
-		System.out.println("se agrega, lol");
 		
+		
+		if(verifyPlayerexists(name)==true) {
+			int index = ubicationOldPlayer(name);
+			int scoreOld = listOfPlayers.get(index).getScore();
+			listOfPlayers.get(index).setScore(scoreOld+score);
+			
+		}else {
+			Player newPlayer = new Player (score, name);
+			listOfPlayers.add(newPlayer);
+			//System.out.println("se agrega, lol");
+		}
 	}
 	
 	public int toCalculateScore(int seconds, int seeds) {
@@ -223,33 +231,97 @@ public class GameController {
 		return (seeds*120)-seconds; 
 	}
 	
-	public void probarList() {
+	public String toShowTopFive() {
 	
+		String out = "";
 		
-		sortByName();
+		sortByScore();
 		
-		for(int i = 0;i<listOfPlayers.size();i++) {
-			System.out.println("i: "+i);
-			System.out.println(listOfPlayers.get(i).toShowTopFive());
+		int count = 0;
+		boolean stop = false;
+		
+		if(listOfPlayers.size()<=0) {
+			out += "There are no players in the system\n";
+		}else {
+		
+			out+="       ***Top 5***        \n";
+			for(int i = 0;i<listOfPlayers.size() && !stop;i++) {
+				//out += listOfPlayers.get(i).toShowScore()+"\n";
+				out += listOfPlayers.get(i).dataPlayerSave()+"\n";
+				count++;
+				if(count == 5) {
+					stop = true;
+				}
+			}
 		}
+		return out;
 		
 	}
 	
-	public void sortWinPlayers() {
-		int n = listOfPlayers.size()-1;
-		boolean flag = true; 
-		for (int i = 0; i < n && flag; i++) {
-			System.out.println("n:"+n);
+	public void sortByScore() {
+		int n = listOfPlayers.size();
+		boolean flag = true;
+		
+		for(int i = 0;i<n && flag;i++) {
 			flag = false;
-	    	for (int j = 1; j < n - i; j++) {
-	    		if (listOfPlayers.get(j).getScore()>listOfPlayers.get(j-1).getScore()) {
-	    			Player temp = listOfPlayers.get(j);
-	    			listOfPlayers.set(j, listOfPlayers.get(j-1));
-	    	        listOfPlayers.set(j-1, temp);
-	    			flag = true;
-	    		}
-	    	}
-	    }
+			for(int j = 1;j<n-i;j++) {
+				if(listOfPlayers.get(j).compareByScore(listOfPlayers.get(j-1))>0) {
+					Player temp = listOfPlayers.get(j);
+					listOfPlayers.set(j,listOfPlayers.get(j-1));
+					listOfPlayers.set(j-1, temp);
+					flag = true;
+				}
+			}
+		}
+	}
+	
+	public boolean verifyPlayerexists(String name) {
+		sortByName();
+		
+		boolean flag = false; 
+		int inicio = 0;
+		int fin = listOfPlayers.size()-1;
+		int medio =0; 
+		
+		while(inicio <= fin &&!flag) {
+			
+			medio = (inicio+fin)/2; 
+			
+			if(listOfPlayers.get(medio).getPlayerName().compareTo(name)==0) {
+				
+				flag = true; 
+			}else if(listOfPlayers.get(medio).getPlayerName().compareTo(name)<0) {
+				fin = medio - 1; 
+			}else{
+				inicio = medio + 1; 
+			}
+		}
+		
+		return flag; 
+	}
+	
+	public int ubicationOldPlayer(String name) {
+		
+		boolean flag = false; 
+		int inicio = 0;
+		int fin = listOfPlayers.size()-1;
+		int medio =0; 
+		int answer = 0; 
+		
+		while(inicio <= fin &&!flag) {
+			
+			medio = (inicio+fin)/2; 
+			
+			if(listOfPlayers.get(medio).getPlayerName().compareTo(name)==0) {
+				answer = medio; 
+				flag = true; 
+			}else if(listOfPlayers.get(medio).getPlayerName().compareTo(name)<0) {
+				fin = medio - 1; 
+			}else{
+				inicio = medio + 1; 
+			}
+		}	
+		return answer; 
 	}
 	
 	public void sortByName() {
