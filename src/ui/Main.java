@@ -4,12 +4,12 @@ package ui;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.GameController;
 
 public class Main {
+	
 	
 	//Attributes
 	private static Scanner sc;
@@ -53,7 +53,7 @@ public class Main {
 				
 				System.out.println("(1) Start game\n"+
 						"(2) See top 5\n"+
-						"(0) Exit");
+						"(0) Exit and Save data");
 	
 				option = sc.nextInt();
 				pc.toExecuteOperation(option);
@@ -71,6 +71,7 @@ public class Main {
 	public void toExecuteOperation(int option) {
 		switch(option) {
 		case 0:
+			// To serialize the information the user must select this option			
 			System.out.println("Bye see you later");
 			toSerialize();  
 			break;
@@ -165,6 +166,7 @@ public class Main {
 	
 
 	public void toStartGame() {
+		
 		boolean stopGame = false;
 	
 	
@@ -183,7 +185,6 @@ public class Main {
 				int seconds = (int) period.getSeconds();
 				
 				toAddSeconds(seconds,0);
-				
 				
 				//
 				
@@ -214,12 +215,12 @@ public class Main {
 				
 				if(!gController.verifyNumSeeds()) {
 					stopGame = true;
+					addWinner(timeSecondsP1,timeSecondsP2);
 				}
 			}
 			else {
 				stopGame = true;
 				addWinner(timeSecondsP1,timeSecondsP2);
-				
 				
 				//Agregar cosa que revele quien gano.
 				
@@ -229,6 +230,7 @@ public class Main {
 
 			}
 		}
+		
 	}
 
 

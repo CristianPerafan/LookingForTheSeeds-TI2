@@ -42,6 +42,7 @@ public class GameController {
 		
 		locateSeedInTheBoard(numSeeds);
 		//To locate the players in a random position
+		//Note: if one player is located in a box with a seed, it is not going to be taked by the player.
 		locateThePlayersInTheBoard(playerR1,playerM2);
 		
 		locateTheLinksInTheBoard(numLinks);
@@ -174,8 +175,16 @@ public class GameController {
 		Player rick = list.toGetFinalStateRick();
 		
 		Player morty = list.toGetFinalStateMorty();
+	
 		
 		if(rick.getNumSeeds()>morty.getNumSeeds()) {
+			System.out.println("  _____    _          _                                 \r\n"
+					+ " |  __ \\  (_)        | |                                \r\n"
+					+ " | |__) |  _    ___  | | __   __      __   ___    _ __  \r\n"
+					+ " |  _  /  | |  / __| | |/ /   \\ \\ /\\ / /  / _ \\  | '_ \\ \r\n"
+					+ " | | \\ \\  | | | (__  |   <     \\ V  V /  | (_) | | | | |\r\n"
+					+ " |_|  \\_\\ |_|  \\___| |_|\\_\\     \\_/\\_/    \\___/  |_| |_| ");
+			
 			//Rick is the winner
 			int scoreWinner = toCalculateScore(secondsR,rick.getNumSeeds());
 			
@@ -186,6 +195,12 @@ public class GameController {
 		} //In this case there is tie
 		else if(rick.getNumSeeds()==morty.getNumSeeds()) {
 			if(secondsR>secondsM) {
+				System.out.println("  _____    _          _                                 \r\n"
+						+ " |  __ \\  (_)        | |                                \r\n"
+						+ " | |__) |  _    ___  | | __   __      __   ___    _ __  \r\n"
+						+ " |  _  /  | |  / __| | |/ /   \\ \\ /\\ / /  / _ \\  | '_ \\ \r\n"
+						+ " | | \\ \\  | | | (__  |   <     \\ V  V /  | (_) | | | | |\r\n"
+						+ " |_|  \\_\\ |_|  \\___| |_|\\_\\     \\_/\\_/    \\___/  |_| |_|");
 				//Rick is the winner
 				int scoreWinner = toCalculateScore(secondsR,rick.getNumSeeds());
 				
@@ -193,6 +208,14 @@ public class GameController {
 				addWinPlayer(scoreWinner,rick.getPlayerName());
 			}
 			else {
+				System.out.println("  __  __                  _                                        \r\n"
+						+ " |  \\/  |                | |                                       \r\n"
+						+ " | \\  / |   ___    _ __  | |_   _   _    __      __   ___    _ __  \r\n"
+						+ " | |\\/| |  / _ \\  | '__| | __| | | | |   \\ \\ /\\ / /  / _ \\  | '_ \\ \r\n"
+						+ " | |  | | | (_) | | |    | |_  | |_| |    \\ V  V /  | (_) | | | | |\r\n"
+						+ " |_|  |_|  \\___/  |_|     \\__|  \\__, |     \\_/\\_/    \\___/  |_| |_|\r\n"
+						+ "                                 __/ |                             \r\n"
+						+ "                                |___/                              ");
 				//Morty is the winner
 				int scoreWinner = toCalculateScore(secondsM,morty.getNumSeeds());
 				
@@ -201,6 +224,14 @@ public class GameController {
 			}
 		}
 		else {
+			System.out.println("  __  __                  _                                        \r\n"
+					+ " |  \\/  |                | |                                       \r\n"
+					+ " | \\  / |   ___    _ __  | |_   _   _    __      __   ___    _ __  \r\n"
+					+ " | |\\/| |  / _ \\  | '__| | __| | | | |   \\ \\ /\\ / /  / _ \\  | '_ \\ \r\n"
+					+ " | |  | | | (_) | | |    | |_  | |_| |    \\ V  V /  | (_) | | | | |\r\n"
+					+ " |_|  |_|  \\___/  |_|     \\__|  \\__, |     \\_/\\_/    \\___/  |_| |_|\r\n"
+					+ "                                 __/ |                             \r\n"
+					+ "                                |___/                              ");
 			//Morty is the winner
 			int scoreWinner = toCalculateScore(secondsM,morty.getNumSeeds());
 			
@@ -213,7 +244,6 @@ public class GameController {
 	
 	public void addWinPlayer(int score, String name) {
 		
-		
 		if(verifyPlayerexists(name)==true) {
 			int index = ubicationOldPlayer(name);
 			int scoreOld = listOfPlayers.get(index).getScore();
@@ -222,17 +252,17 @@ public class GameController {
 		}else {
 			Player newPlayer = new Player (score, name);
 			listOfPlayers.add(newPlayer);
-			//System.out.println("se agrega, lol");
 		}
 	}
 	
 	public int toCalculateScore(int seconds, int seeds) {
 		
-		return (seeds*120)-seconds; 
+		return (seeds*300)-seconds; 
 	}
 	
 	public String toShowTopFive() {
-	
+		
+		
 		String out = "";
 		
 		sortByScore();
@@ -357,10 +387,10 @@ public class GameController {
 	}
 	
 	public void deserializar() throws IOException, ClassNotFoundException {
-		//File file = new File(".\\files\\players.txt");
 		FileInputStream fis = new FileInputStream(file);
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<Player> obj = (ArrayList<Player>)ois.readObject();
 		listOfPlayers.addAll(obj);
 		ois.close();
